@@ -5,6 +5,8 @@ import GradientText from './ui/GradientText'
 import GlassCard from './ui/GlassCard'
 // @ts-expect-error - LiquidEther is a JSX component without TypeScript definitions
 import LiquidEther from './LiquidEther'
+// @ts-expect-error - ProfileCard is a JSX component without TypeScript definitions
+import ProfileCard from './ProfileCard'
 
 export default function Hero() {
   const { t } = useTranslation()
@@ -20,37 +22,49 @@ export default function Hero() {
       <div className="absolute inset-0 z-[1] bg-gradient-to-br from-blue-50/30 via-white/20 to-purple-50/30 dark:from-gray-900/30 dark:via-blue-900/20 dark:to-purple-900/30 pointer-events-none" />
 
       {/* Content */}
-      <div className="relative max-w-5xl w-full z-10">
-        <div className="text-center mb-12">
-          {/* Avatar with glow */}
+      <div className="relative max-w-6xl w-full z-10">
+        <div className="grid md:grid-cols-2 gap-12 items-center">
+          {/* Left: Profile Card */}
           <motion.div
-            initial={{ scale: 0, rotate: -180 }}
-            animate={{ scale: 1, rotate: 0 }}
+            initial={{ opacity: 0, x: -50 }}
+            animate={{ opacity: 1, x: 0 }}
             transition={{ 
               type: "spring",
               stiffness: 260,
               damping: 20,
-              duration: 1
+              delay: 0.2
             }}
-            className="mb-8 inline-block relative"
+            className="flex justify-center md:justify-end"
           >
-            <div className="absolute inset-0 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full blur-2xl opacity-30 dark:opacity-50 animate-pulse" />
-            <img
-              src="https://eyre-halo.oss-cn-hangzhou.aliyuncs.com/logo2025-wk6w.png"
-              alt="Eyre Logo"
-              className="relative w-32 h-32 rounded-full border-4 border-blue-200 dark:border-white/20 shadow-2xl"
+            <ProfileCard
+              avatarUrl="/imgs/profile/profile.png"
+              name="符航康 (Eyre)"
+              title={t('hero.subtitle')}
+              handle="Eyre921"
+              status="在线"
+              contactText={t('hero.contact')}
+              showUserInfo={true}
+              enableTilt={true}
+              enableMobileTilt={true}
+              behindGlowEnabled={true}
+              behindGlowColor="rgba(99, 102, 241, 0.5)"
+              innerGradient="linear-gradient(145deg, #6366f180 0%, #8b5cf680 50%, #ec489980 100%)"
+              onContactClick={() => {
+                document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })
+              }}
             />
           </motion.div>
 
-          {/* Title with gradient */}
+          {/* Right: Text Content */}
+          <div className="text-center md:text-left space-y-6">{/* Title with gradient */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.2 }}
+            transition={{ delay: 0.3 }}
           >
-            <h1 className="text-5xl md:text-7xl font-bold mb-4">
-              <span className="inline-flex items-center gap-3">
-                <Sparkles className="w-12 h-12 text-yellow-500 dark:text-yellow-400 animate-pulse" />
+            <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold mb-4">
+              <span className="inline-flex items-center gap-3 flex-wrap justify-center md:justify-start">
+                <Sparkles className="w-10 h-10 md:w-12 md:h-12 text-yellow-500 dark:text-yellow-400 animate-pulse" />
                 <GradientText>{t('hero.greeting')}</GradientText>
               </span>
             </h1>
@@ -59,8 +73,8 @@ export default function Hero() {
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.3 }}
-            className="text-xl md:text-2xl text-gray-700 dark:text-gray-300 mb-6"
+            transition={{ delay: 0.4 }}
+            className="text-xl md:text-2xl text-gray-700 dark:text-gray-300"
           >
             {t('hero.subtitle')}
           </motion.p>
@@ -68,21 +82,51 @@ export default function Hero() {
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.4 }}
-            className="flex items-center justify-center gap-2 text-gray-600 dark:text-gray-400 mb-12"
+            transition={{ delay: 0.5 }}
+            className="flex items-center justify-center md:justify-start gap-2 text-gray-600 dark:text-gray-400"
           >
             <MapPin className="w-5 h-5" />
             <span>{t('hero.university')}</span>
           </motion.div>
+
+          {/* Action Buttons */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.6 }}
+            className="flex flex-wrap justify-center md:justify-start gap-4"
+          >
+            <motion.a
+              href="https://github.com/Eyre921"
+              target="_blank"
+              whileHover={{ scale: 1.05, boxShadow: '0 0 25px rgba(59, 130, 246, 0.5)' }}
+              whileTap={{ scale: 0.95 }}
+              className="flex items-center gap-2 px-6 py-3 rounded-xl bg-gradient-to-r from-blue-500 to-blue-600 text-white font-semibold shadow-lg hover:shadow-blue-500/50 transition-shadow"
+            >
+              <Github className="w-5 h-5" />
+              {t('hero.github')}
+            </motion.a>
+            <motion.a
+              href="mailto:eyre@hnu.edu.cn"
+              whileHover={{ scale: 1.05, boxShadow: '0 0 25px rgba(168, 85, 247, 0.5)' }}
+              whileTap={{ scale: 0.95 }}
+              className="flex items-center gap-2 px-6 py-3 rounded-xl bg-gradient-to-r from-purple-500 to-purple-600 text-white font-semibold shadow-lg hover:shadow-purple-500/50 transition-shadow"
+            >
+              <Mail className="w-5 h-5" />
+              {t('hero.contact')}
+            </motion.a>
+          </motion.div>
+        </div>
         </div>
 
-        {/* Glass Card */}
+        {/* Glass Card - Below */}
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.5 }}
+          transition={{ delay: 0.7 }}
+          className="mt-16"
         >
-          <GlassCard className="max-w-3xl mx-auto">
+          <GlassCard className="max-w-4xl mx-auto">
             <div className="space-y-6">
               <p className="text-2xl font-bold text-gray-900 dark:text-white">
                 {t('hero.description')}
@@ -100,34 +144,6 @@ export default function Hero() {
               </div>
             </div>
           </GlassCard>
-        </motion.div>
-
-        {/* Action Buttons */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.6 }}
-          className="flex justify-center gap-4 mt-12"
-        >
-          <motion.a
-            href="https://github.com/Eyre921"
-            target="_blank"
-            whileHover={{ scale: 1.05, boxShadow: '0 0 25px rgba(59, 130, 246, 0.5)' }}
-            whileTap={{ scale: 0.95 }}
-            className="flex items-center gap-2 px-8 py-4 rounded-xl bg-gradient-to-r from-blue-500 to-blue-600 text-white font-semibold shadow-lg"
-          >
-            <Github className="w-5 h-5" />
-            {t('hero.github')}
-          </motion.a>
-          <motion.a
-            href="mailto:eyre@hnu.edu.cn"
-            whileHover={{ scale: 1.05, boxShadow: '0 0 25px rgba(168, 85, 247, 0.5)' }}
-            whileTap={{ scale: 0.95 }}
-            className="flex items-center gap-2 px-8 py-4 rounded-xl bg-gradient-to-r from-purple-500 to-purple-600 text-white font-semibold shadow-lg"
-          >
-            <Mail className="w-5 h-5" />
-            {t('hero.contact')}
-          </motion.a>
         </motion.div>
       </div>
     </section>
