@@ -1,0 +1,108 @@
+/* Navbar.css */
+
+/* 1. 初始状态：透明、全宽、贴顶 */
+.navbar-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  height: 70px; /* 初始高度 */
+  padding: 0 24px;
+  margin: 0 auto;
+  
+  /* 布局属性 */
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-sizing: border-box;
+  z-index: 1000;
+  
+  /* 关键：设置过渡动画，让变化平滑 */
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 0;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+  
+  /* 使用更柔和的缓动函数和不同的过渡时长 */
+  transition: width 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+              height 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+              top 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+              border-radius 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+              background 0.3s ease-in-out,
+              box-shadow 0.3s ease-in-out,
+              backdrop-filter 0.3s ease-in-out;
+}
+
+/* 深色模式支持 */
+.dark .navbar-container {
+  background: rgba(17, 24, 39, 0.9);
+  border-bottom-color: rgba(255, 255, 255, 0.1);
+}
+
+/* 2. 下滑后的激活状态：收缩、变圆、毛玻璃 */
+.navbar-container.scrolled {
+  /* 收缩变矮 */
+  height: 54px;
+  top: 28px;
+  width: 80%;
+  max-width: 1200px;
+  
+  /* 外观变化 */
+  border-radius: 27px;
+  background: rgba(255, 255, 255, 0.5);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  
+  /* 毛玻璃效果 */
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  
+  /* 阴影 */
+  box-shadow: 0 6px 8px rgba(0, 0, 0, 0.05);
+}
+
+.dark .navbar-container.scrolled {
+  background: rgba(17, 24, 39, 0.5);
+  border-bottom-color: rgba(255, 255, 255, 0.1);
+  box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Logo 区域 */
+.navbar-brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  cursor: pointer;
+}
+
+/* 导航菜单 */
+.navbar-menu {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* 右侧操作区域 */
+.navbar-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* 响应式：移动端 */
+@media (max-width: 640px) {
+  .navbar-container {
+    padding: 0 16px;
+    height: 60px;
+  }
+  
+  .navbar-container.scrolled {
+    width: 90%;
+    height: 50px;
+    top: 16px;
+    border-radius: 25px;
+  }
+  
+  .navbar-menu {
+    display: none; /* 移动端隐藏菜单，可以后续添加汉堡菜单 */
+  }
+}

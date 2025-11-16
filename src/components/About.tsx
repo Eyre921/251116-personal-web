@@ -44,7 +44,7 @@ export default function About() {
       {/* Light Gradient Overlay - pointer-events-none to allow mouse interaction with background */}
       <div className="absolute inset-0 z-[1] bg-gradient-to-b from-transparent via-white/10 to-transparent dark:from-transparent dark:via-gray-900/20 dark:to-transparent pointer-events-none" />
       
-      <div className="relative max-w-7xl mx-auto z-10">
+      <div className="relative max-w-7xl mx-auto z-10 pointer-events-none">
         <motion.h2
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -63,7 +63,7 @@ export default function About() {
               viewport={{ once: true }}
               transition={{ delay: index * 0.1 }}
             >
-              <SpotlightCard className="p-6 h-full">
+              <SpotlightCard className="p-6 h-full pointer-events-auto" allowBackgroundInteraction={true}>
                 <div className="flex items-center gap-4">
                   <div className={`p-3 rounded-xl bg-gradient-to-br ${trait.color} text-white`}>
                     {trait.icon}
@@ -76,7 +76,7 @@ export default function About() {
         </div>
 
         <div className="grid md:grid-cols-2 gap-8 mb-12">
-          <SpotlightCard className="p-8">
+          <SpotlightCard className="p-8 pointer-events-auto" allowBackgroundInteraction={true}>
             <h3 className="text-2xl font-bold text-green-600 dark:text-green-400 mb-6">🤯 {t('about.doingTitle')}</h3>
             <div className="space-y-3">
               {doing.map((item, index) => (
@@ -97,7 +97,7 @@ export default function About() {
             </div>
           </SpotlightCard>
 
-          <SpotlightCard className="p-8">
+          <SpotlightCard className="p-8 pointer-events-auto" allowBackgroundInteraction={true}>
             <h3 className="text-2xl font-bold text-orange-600 dark:text-orange-400 mb-6">😴 {t('about.goodAtTitle')}</h3>
             <div className="space-y-3">
               {goodAt.map((item, index) => (
@@ -124,7 +124,7 @@ export default function About() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
         >
-          <SpotlightCard className="p-8 text-center" spotlightColor="rgba(168, 85, 247, 0.2)">
+          <SpotlightCard className="p-8 text-center pointer-events-auto" spotlightColor="rgba(168, 85, 247, 0.2)" allowBackgroundInteraction={true}>
             <h3 className="text-3xl font-bold text-purple-600 dark:text-purple-400 mb-6">💫 {t('about.dreamTitle')}</h3>
             <p className="text-xl text-gray-800 dark:text-gray-200 leading-relaxed">
               <strong className="text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-pink-600 dark:from-purple-400 dark:to-pink-400">

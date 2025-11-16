@@ -76,7 +76,7 @@ export default function Contact() {
       {/* Gradient Overlay - pointer-events-none to allow mouse interaction with background */}
       <div className="absolute inset-0 z-[1] bg-gradient-to-b from-gray-50/60 via-white/60 to-gray-50/60 dark:from-gray-950/60 dark:via-gray-900/60 dark:to-gray-950/60 pointer-events-none" />
       
-      <div className="relative max-w-7xl mx-auto z-10" style={{ pointerEvents: 'auto' }}>
+      <div className="relative max-w-7xl mx-auto z-10 pointer-events-none">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -92,7 +92,7 @@ export default function Contact() {
         </motion.div>
 
         {/* Contact Cards with Bounce Effect */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12" style={{ pointerEvents: 'auto' }}>
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
           {contacts.map((contact, index) => (
             <motion.div
               key={index}
@@ -114,13 +114,13 @@ export default function Contact() {
                   damping: 10 
                 }
               }}
-              style={{ pointerEvents: 'auto' }}
+              className="pointer-events-auto"
             >
               <div className="relative h-full group cursor-pointer">
                 {/* Glow effect on hover */}
                 <div className={`absolute inset-0 bg-gradient-to-br ${contact.color} opacity-0 group-hover:opacity-20 blur-xl transition-opacity duration-300 rounded-2xl`} />
                 
-                <GlassCard className="h-full relative overflow-hidden [pointer-events:auto]">
+                <GlassCard className="h-full relative overflow-hidden pointer-events-auto">
                   {/* Shine effect */}
                   <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000" />
                   
@@ -162,13 +162,13 @@ export default function Contact() {
         </div>
 
         {/* Communication Tips */}
-        <div className="grid md:grid-cols-2 gap-8 mb-12" style={{ pointerEvents: 'auto' }}>
+        <div className="grid md:grid-cols-2 gap-8 mb-12">
           <motion.div
             initial={{ opacity: 0, x: -20 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
           >
-            <SpotlightCard className="p-8 h-full [pointer-events:auto]" spotlightColor="rgba(59, 130, 246, 0.15)">
+            <SpotlightCard className="p-8 h-full pointer-events-auto" spotlightColor="rgba(59, 130, 246, 0.15)" allowBackgroundInteraction={true}>
               <motion.h3 
                 initial={{ opacity: 0, x: -20 }}
                 whileInView={{ opacity: 1, x: 0 }}
@@ -221,7 +221,7 @@ export default function Contact() {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
           >
-            <SpotlightCard className="p-8 h-full [pointer-events:auto]" spotlightColor="rgba(168, 85, 247, 0.15)">
+            <SpotlightCard className="p-8 h-full pointer-events-auto" spotlightColor="rgba(168, 85, 247, 0.15)" allowBackgroundInteraction={true}>
               <motion.h3 
                 initial={{ opacity: 0, x: 20 }}
                 whileInView={{ opacity: 1, x: 0 }}
@@ -278,7 +278,7 @@ export default function Contact() {
           viewport={{ once: true }}
           className="text-center"
         >
-          <GlassCard className="inline-block [pointer-events:auto]">
+          <GlassCard className="inline-block pointer-events-auto">
             <motion.img
               whileHover={{ scale: 1.05 }}
               src="https://eyre-halo.oss-cn-hangzhou.aliyuncs.com/image-rp2a.png"

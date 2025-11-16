@@ -44,7 +44,7 @@ export default function Knowledge() {
       {/* Light Gradient Overlay - pointer-events-none to allow mouse interaction with background */}
       <div className="absolute inset-0 z-[1] bg-gradient-to-b from-transparent via-gray-50/20 to-transparent dark:from-transparent dark:via-gray-900/20 dark:to-transparent pointer-events-none" />
       
-      <div className="relative max-w-7xl mx-auto z-10">
+      <div className="relative max-w-7xl mx-auto z-10 pointer-events-none">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -71,7 +71,7 @@ export default function Knowledge() {
               transition={{ delay: index * 0.05 }}
               whileHover={{ y: -5 }}
             >
-              <GlassCard className="h-full group cursor-pointer">
+              <GlassCard className="h-full group cursor-pointer pointer-events-auto">
                 <div className={`p-4 rounded-xl bg-gradient-to-br ${area.color} text-white mb-4 inline-block`}>
                   {area.icon}
                 </div>
@@ -90,7 +90,7 @@ export default function Knowledge() {
           viewport={{ once: true }}
           className="mt-12"
         >
-          <GlassCard className="text-center">
+          <GlassCard className="text-center pointer-events-auto" allowBackgroundInteraction={true}>
             <p className="text-gray-700 dark:text-gray-300">{t('knowledge.tip')}</p>
           </GlassCard>
         </motion.div>

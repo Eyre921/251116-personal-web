@@ -6,12 +6,14 @@ interface SpotlightCardProps {
   children: ReactNode
   className?: string
   spotlightColor?: string
+  allowBackgroundInteraction?: boolean
 }
 
 export default function SpotlightCard({ 
   children, 
   className,
-  spotlightColor = 'rgba(59, 130, 246, 0.15)'
+  spotlightColor = 'rgba(59, 130, 246, 0.15)',
+  allowBackgroundInteraction = false
 }: SpotlightCardProps) {
   const divRef = useRef<HTMLDivElement>(null)
   const [position, setPosition] = useState({ x: 0, y: 0 })
@@ -54,7 +56,15 @@ export default function SpotlightCard({
           background: `radial-gradient(600px circle at ${position.x}px ${position.y}px, ${spotlightColor}, transparent 40%)`,
         }}
       />
-      {children}
+      {allowBackgroundInteraction ? (
+        <div className="pointer-events-none relative">
+          {children}
+        </div>
+      ) : (
+        <div className="relative">
+          {children}
+        </div>
+      )}
     </motion.div>
   )
 }

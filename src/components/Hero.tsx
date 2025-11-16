@@ -21,7 +21,7 @@ export default function Hero() {
       <div className="absolute inset-0 z-[1] bg-gradient-to-br from-blue-50/30 via-white/20 to-purple-50/30 dark:from-gray-900/30 dark:via-blue-900/20 dark:to-purple-900/30 pointer-events-none" />
 
       {/* Content - Flexible Layout with Photo and Text */}
-      <div className="relative w-full h-full z-10 flex items-center justify-center pt-16 lg:pt-20">
+      <div className="relative w-full h-full z-10 flex items-center justify-center pt-16 lg:pt-30 pointer-events-none">
         <div className="w-full max-w-7xl mx-auto px-4">
           <div className="flex flex-col lg:flex-row items-center lg:items-start gap-6 lg:gap-8 min-h-[600px] lg:min-h-screen">
             {/* Left: Profile Card - Responsive Size */}
@@ -34,7 +34,7 @@ export default function Hero() {
                 damping: 20,
                 delay: 0.2
               }}
-              className="flex-shrink-0 w-full max-w-xs sm:max-w-sm lg:max-w-md xl:max-w-lg"
+              className="flex-shrink-0 w-full max-w-xs sm:max-w-sm lg:max-w-md xl:max-w-lg pointer-events-auto"
             >
               <ProfileCard
                 avatarUrl="/imgs/profile/profile.png"
@@ -106,7 +106,7 @@ export default function Hero() {
                   target="_blank"
                   whileHover={{ scale: 1.05, boxShadow: '0 0 25px rgba(59, 130, 246, 0.5)' }}
                   whileTap={{ scale: 0.95 }}
-                  className="flex items-center gap-2 px-6 py-3 rounded-xl bg-gradient-to-r from-blue-500 to-blue-600 text-white font-semibold shadow-lg hover:shadow-blue-500/50 transition-shadow"
+                  className="flex items-center gap-2 px-6 py-3 rounded-xl bg-gradient-to-r from-blue-500 to-blue-600 text-white font-semibold shadow-lg hover:shadow-blue-500/50 transition-shadow pointer-events-auto"
                 >
                   <Github className="w-5 h-5" />
                   {t('hero.github')}
@@ -115,7 +115,7 @@ export default function Hero() {
                   href="mailto:eyre@hnu.edu.cn"
                   whileHover={{ scale: 1.05, boxShadow: '0 0 25px rgba(168, 85, 247, 0.5)' }}
                   whileTap={{ scale: 0.95 }}
-                  className="flex items-center gap-2 px-6 py-3 rounded-xl bg-gradient-to-r from-purple-500 to-purple-600 text-white font-semibold shadow-lg hover:shadow-purple-500/50 transition-shadow"
+                  className="flex items-center gap-2 px-6 py-3 rounded-xl bg-gradient-to-r from-purple-500 to-purple-600 text-white font-semibold shadow-lg hover:shadow-purple-500/50 transition-shadow pointer-events-auto"
                 >
                   <Mail className="w-5 h-5" />
                   {t('hero.contact')}

@@ -6,9 +6,10 @@ interface GlassCardProps {
   children: ReactNode
   className?: string
   blur?: string
+  allowBackgroundInteraction?: boolean
 }
 
-export default function GlassCard({ children, className, blur = 'md' }: GlassCardProps) {
+export default function GlassCard({ children, className, blur = 'md', allowBackgroundInteraction = false }: GlassCardProps) {
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
@@ -24,7 +25,13 @@ export default function GlassCard({ children, className, blur = 'md' }: GlassCar
         className
       )}
     >
-      {children}
+      {allowBackgroundInteraction ? (
+        <div className="pointer-events-none">
+          {children}
+        </div>
+      ) : (
+        children
+      )}
     </motion.div>
   )
 }

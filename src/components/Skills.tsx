@@ -58,7 +58,7 @@ export default function Skills() {
       {/* Gradient Overlay - pointer-events-none to allow mouse interaction with background */}
       <div className="absolute inset-0 z-[1] bg-gradient-to-b from-white/50 via-gray-50/50 to-white/50 dark:from-gray-900/50 dark:via-gray-950/50 dark:to-gray-900/50 pointer-events-none" />
       
-      <div className="relative max-w-7xl mx-auto z-10">
+      <div className="relative max-w-7xl mx-auto z-10 pointer-events-none">
         <motion.h2
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -75,7 +75,7 @@ export default function Skills() {
           viewport={{ once: true }}
           className="mb-12"
         >
-          <SpotlightCard className="p-8" spotlightColor="rgba(168, 85, 247, 0.15)">
+          <SpotlightCard className="p-8 pointer-events-auto" spotlightColor="rgba(168, 85, 247, 0.15)" allowBackgroundInteraction={true}>
             <h3 className="text-3xl font-bold text-purple-600 dark:text-purple-400 mb-8 text-center">
               {t('skills.hobbiesTitle')}
             </h3>
@@ -110,7 +110,7 @@ export default function Skills() {
               viewport={{ once: true }}
               transition={{ delay: index * 0.15 }}
             >
-              <GlassCard className="h-full">
+              <GlassCard className="h-full pointer-events-auto" allowBackgroundInteraction={true}>
                 <div className={`w-12 h-1 rounded-full bg-gradient-to-r ${pursuit.color} mb-4`} />
                 <h4 className="text-lg font-bold text-gray-900 dark:text-white mb-3">
                   {pursuit.title}
@@ -129,7 +129,7 @@ export default function Skills() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
         >
-          <SpotlightCard className="p-8" spotlightColor="rgba(234, 179, 8, 0.15)">
+          <SpotlightCard className="p-8 pointer-events-auto" spotlightColor="rgba(234, 179, 8, 0.15)" allowBackgroundInteraction={true}>
             <div className="flex items-center justify-center gap-3 mb-8">
               <Trophy className="w-8 h-8 text-yellow-600 dark:text-yellow-400" />
               <h3 className="text-3xl font-bold text-yellow-600 dark:text-yellow-400">

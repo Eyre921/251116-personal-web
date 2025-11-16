@@ -1,12 +1,15 @@
 import { motion } from 'framer-motion'
-import { Navbar as HeroNavbar, NavbarBrand, NavbarContent, NavbarItem, Button, Dropdown, DropdownTrigger, DropdownMenu, DropdownItem } from '@heroui/react'
+import { Button, Dropdown, DropdownTrigger, DropdownMenu, DropdownItem } from '@heroui/react'
 import { Sun, Moon, Languages } from 'lucide-react'
 import { useTranslation } from 'react-i18next'
 import { useTheme } from '../contexts/ThemeContext'
+import { useScrollNavbar } from '../hooks/useScrollNavbar'
+import './Navbar.css'
 
 export default function Navbar() {
   const { t, i18n } = useTranslation()
   const { theme, toggleTheme } = useTheme()
+  const isScrolled = useScrollNavbar(80)
 
   const changeLanguage = (lng: string) => {
     i18n.changeLanguage(lng)
@@ -18,14 +21,9 @@ export default function Navbar() {
   }
 
   return (
-    <HeroNavbar 
-      isBordered 
-      className="bg-white/90 dark:bg-gray-900/90 backdrop-blur-xl border-b border-gray-200 dark:border-white/10"
-      classNames={{
-        wrapper: "max-w-7xl"
-      }}
-    >
-      <NavbarBrand>
+    <nav className={`navbar-container ${isScrolled ? 'scrolled' : ''}`}>
+      {/* Logo Brand */}
+      <div className="navbar-brand">
         <motion.div
           whileHover={{ scale: 1.1, rotate: 5 }}
           className="relative"
@@ -45,9 +43,10 @@ export default function Navbar() {
             Eyre
           </span>
         </motion.p>
-      </NavbarBrand>
+      </div>
 
-      <NavbarContent className="hidden sm:flex gap-2" justify="center">
+      {/* Center Menu - Hidden on mobile */}
+      <div className="navbar-menu">
         {[
           { id: 'hero', label: t('nav.home') },
           { id: 'about', label: t('nav.about') },
@@ -55,62 +54,64 @@ export default function Navbar() {
           { id: 'skills', label: t('nav.skills') },
           { id: 'contact', label: t('nav.contact') }
         ].map((item) => (
-          <NavbarItem key={item.id}>
-            <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-              <Button
-                variant="light"
-                onPress={() => scrollToSection(item.id)}
-                className="text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-white/10 transition-all"
-              >
-                {item.label}
-              </Button>
-            </motion.div>
-          </NavbarItem>
-        ))}
-      </NavbarContent>
-
-      <NavbarContent justify="end">
-        <NavbarItem>
-          <Dropdown>
-            <DropdownTrigger>
-              <Button
-                variant="light"
-                isIconOnly
-                className="text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-white/10"
-              >
-                <Languages className="w-5 h-5" />
-              </Button>
-            </DropdownTrigger>
-            <DropdownMenu
-              aria-label="Language selection"
-              onAction={(key) => changeLanguage(key as string)}
-            >
-              <DropdownItem key="zh">
-                🇨🇳 中文
-              </DropdownItem>
-              <DropdownItem key="en">
-                🇬🇧 English
-              </DropdownItem>
-            </DropdownMenu>
-          </Dropdown>
-        </NavbarItem>
-        <NavbarItem>
-          <motion.div whileHover={{ scale: 1.1, rotate: 180 }} whileTap={{ scale: 0.9 }}>
+          <motion.div 
+            key={item.id}
+            whileHover={{ scale: 1.05 }} 
+            whileTap={{ scale: 0.95 }}
+          >
             <Button
-              isIconOnly
               variant="light"
-              onPress={toggleTheme}
-              className="text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-white/10"
+              onPress={() => scrollToSection(item.id)}
+              className="text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-white/10 transition-all"
             >
-              {theme === 'light' ? (
-                <Moon className="w-5 h-5" />
-              ) : (
-                <Sun className="w-5 h-5" />
-              )}
+              {item.label}
             </Button>
           </motion.div>
-        </NavbarItem>
-      </NavbarContent>
-    </HeroNavbar>
+        ))}
+      </div>
+
+      {/* Right Actions */}
+      <div className="navbar-actions">
+        {/* Language Selector */}
+        <Dropdown>
+          <DropdownTrigger>
+            <Button
+              variant="light"
+              isIconOnly
+              className="text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-white/10"
+            >
+              <Languages className="w-5 h-5" />
+            </Button>
+          </DropdownTrigger>
+          <DropdownMenu
+            aria-label="Language selection"
+            onAction={(key) => changeLanguage(key as string)}
+          >
+            <DropdownItem key="zh">
+              🇨🇳 中文
+            </DropdownItem>
+            <DropdownItem key="en">
+              🇬🇧 English
+            </DropdownItem>
+          </DropdownMenu>
+        </Dropdown>
+
+        {/* Theme Toggle */}
+        <motion.div whileHover={{ scale: 1.1, rotate: 180 }} whileTap={{ scale: 0.9 }}>
+          <Button
+            isIconOnly
+            variant="light"
+            onPress={toggleTheme}
+            className="text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-white/10"
+          >
+            {theme === 'light' ? (
+              <Moon className="w-5 h-5" />
+            ) : (
+              <Sun className="w-5 h-5" />
+            )}
+          </Button>
+        </motion.div>
+      </div>
+    </nav>
   )
 }
