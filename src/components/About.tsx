@@ -3,6 +3,8 @@ import { Heart, Eye, Target, Sparkles } from 'lucide-react'
 import { useTranslation } from 'react-i18next'
 import SpotlightCard from './ui/SpotlightCard'
 import GradientText from './ui/GradientText'
+// @ts-ignore
+import Silk from './Silk'
 
 export default function About() {
   const { t } = useTranslation()
@@ -19,7 +21,11 @@ export default function About() {
 
   return (
     <section id="about" className="relative py-20 px-4 bg-gray-50 dark:bg-gray-950 overflow-hidden">
-      <div className="absolute inset-0 bg-gradient-to-b from-white via-gray-50 to-white dark:from-gray-900 dark:via-gray-950 dark:to-gray-900" />
+      {/* Silk Background */}
+      <div className="absolute inset-0 z-0">
+        <Silk />
+      </div>
+      <div className="absolute inset-0 bg-gradient-to-b from-white/50 via-gray-50/50 to-white/50 dark:from-gray-900/50 dark:via-gray-950/50 dark:to-gray-900/50 z-0" />
       
       <div className="relative max-w-7xl mx-auto z-10">
         <motion.h2

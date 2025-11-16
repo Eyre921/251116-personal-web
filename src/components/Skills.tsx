@@ -4,6 +4,8 @@ import { useTranslation } from 'react-i18next'
 import SpotlightCard from './ui/SpotlightCard'
 import GlassCard from './ui/GlassCard'
 import GradientText from './ui/GradientText'
+// @ts-ignore
+import { GridScan } from './GridScan'
 
 export default function Skills() {
   const { t } = useTranslation()
@@ -48,7 +50,11 @@ export default function Skills() {
 
   return (
     <section id="skills" className="relative py-20 px-4 bg-gray-50 dark:bg-gray-950 overflow-hidden">
-      <div className="absolute inset-0 bg-gradient-to-b from-white via-gray-50 to-white dark:from-gray-900 dark:via-gray-950 dark:to-gray-900" />
+      {/* GridScan Background */}
+      <div className="absolute inset-0 z-0">
+        <GridScan />
+      </div>
+      <div className="absolute inset-0 bg-gradient-to-b from-white/60 via-gray-50/60 to-white/60 dark:from-gray-900/60 dark:via-gray-950/60 dark:to-gray-900/60 z-0" />
       
       <div className="relative max-w-7xl mx-auto z-10">
         <motion.h2

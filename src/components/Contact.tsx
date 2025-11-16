@@ -4,6 +4,8 @@ import { useTranslation } from 'react-i18next'
 import GlassCard from './ui/GlassCard'
 import SpotlightCard from './ui/SpotlightCard'
 import GradientText from './ui/GradientText'
+// @ts-ignore
+import Hyperspeed from './Hyperspeed'
 
 export default function Contact() {
   const { t } = useTranslation()
@@ -60,7 +62,11 @@ export default function Contact() {
 
   return (
     <section id="contact" className="relative py-20 px-4 bg-white dark:bg-gray-900 overflow-hidden">
-      <div className="absolute inset-0 bg-gradient-to-b from-gray-50 via-white to-gray-50 dark:from-gray-950 dark:via-gray-900 dark:to-gray-950" />
+      {/* Hyperspeed Background */}
+      <div className="absolute inset-0 z-0">
+        <Hyperspeed />
+      </div>
+      <div className="absolute inset-0 bg-gradient-to-b from-gray-50/70 via-white/70 to-gray-50/70 dark:from-gray-950/70 dark:via-gray-900/70 dark:to-gray-950/70 z-0" />
       
       <div className="relative max-w-7xl mx-auto z-10">
         <motion.div

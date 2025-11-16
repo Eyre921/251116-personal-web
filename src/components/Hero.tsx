@@ -3,23 +3,18 @@ import { Github, Mail, MapPin, Sparkles } from 'lucide-react'
 import { useTranslation } from 'react-i18next'
 import GradientText from './ui/GradientText'
 import GlassCard from './ui/GlassCard'
+// @ts-ignore
+import LiquidEther from './LiquidEther'
 
 export default function Hero() {
   const { t } = useTranslation()
 
   return (
     <section id="hero" className="relative min-h-screen flex items-center justify-center px-4 py-20 overflow-hidden bg-gradient-to-br from-blue-50 via-white to-purple-50 dark:from-gray-900 dark:via-blue-900/20 dark:to-purple-900/20">
-      {/* Grid pattern */}
-      <div 
-        className="absolute inset-0 opacity-20"
-        style={{
-          backgroundImage: `
-            linear-gradient(rgba(100, 100, 100, 0.05) 1px, transparent 1px),
-            linear-gradient(90deg, rgba(100, 100, 100, 0.05) 1px, transparent 1px)
-          `,
-          backgroundSize: '50px 50px',
-        }}
-      />
+      {/* Liquid Ether Background */}
+      <div className="absolute inset-0 z-0">
+        <LiquidEther />
+      </div>
 
       {/* Content */}
       <div className="relative max-w-5xl w-full z-10">
