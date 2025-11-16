@@ -10,25 +10,21 @@ export const useScrollNavbar = (threshold: number = 50): boolean => {
 
   useEffect(() => {
     let ticking = false;
-    let timeout: NodeJS.Timeout | null = null;
 
     const handleScroll = () => {
       if (!ticking) {
         window.requestAnimationFrame(() => {
           const currentScrollY = window.scrollY || document.documentElement.scrollTop;
           
-          // 添加滞后区间，避免在阈值附近频繁切换
-          // 向下滚动时使用 threshold，向上滚动时使用 threshold - 30
+          // 添加滞后区间（hysteresis），避免在阈值附近频繁切换
+          // 向下滚动时使用 threshold，向上滚动时使用 threshold - 20
           const shouldBeScrolled = isScrolled 
-            ? currentScrollY > threshold - 30  // 向上滚动需要多滚动一点才切换回去
+            ? currentScrollY > threshold - 20  // 向上滚动需要多滚动一点才切换回去
             : currentScrollY > threshold;      // 向下滚动到阈值就切换
           
-          // 添加轻微延迟让过渡更平滑
+          // 立即更新状态，CSS transition 会处理平滑过渡
           if (isScrolled !== shouldBeScrolled) {
-            if (timeout) clearTimeout(timeout);
-            timeout = setTimeout(() => {
-              setIsScrolled(shouldBeScrolled);
-            }, 30); // 30ms 延迟让切换更柔和
+            setIsScrolled(shouldBeScrolled);
           }
           
           ticking = false;
@@ -45,7 +41,6 @@ export const useScrollNavbar = (threshold: number = 50): boolean => {
 
     return () => {
       window.removeEventListener('scroll', handleScroll);
-      if (timeout) clearTimeout(timeout);
     };
   }, [threshold, isScrolled]);
 

@@ -18,19 +18,28 @@
   box-sizing: border-box;
   z-index: 1000;
   
-  /* 关键：设置过渡动画，让变化平滑 */
+  /* 初始外观 */
   background: rgba(255, 255, 255, 0.9);
-  border-radius: 0;
+  border-radius: 0px;
   border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+  box-shadow: none;
+  backdrop-filter: blur(0px);
+  -webkit-backdrop-filter: blur(0px);
   
-  /* 使用更柔和的缓动函数和不同的过渡时长 */
-  transition: width 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94),
-              height 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94),
-              top 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94),
-              border-radius 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94),
-              background 0.3s ease-in-out,
-              box-shadow 0.3s ease-in-out,
-              backdrop-filter 0.3s ease-in-out;
+  /* 关键：统一的过渡动画，所有属性使用相同的缓动函数 */
+  transition: 
+    width 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+    height 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+    top 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+    padding 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+    border-radius 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+    background 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+    border-bottom-color 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+    box-shadow 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+    backdrop-filter 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  
+  /* 确保平滑渲染 */
+  will-change: width, height, top, border-radius, background, box-shadow, backdrop-filter;
 }
 
 /* 深色模式支持 */
@@ -41,7 +50,7 @@
 
 /* 2. 下滑后的激活状态：收缩、变圆、毛玻璃 */
 .navbar-container.scrolled {
-  /* 收缩变矮 */
+  /* 尺寸和位置变化 */
   height: 54px;
   top: 28px;
   width: 80%;
@@ -50,7 +59,7 @@
   /* 外观变化 */
   border-radius: 27px;
   background: rgba(255, 255, 255, 0.5);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  border-bottom-color: rgba(255, 255, 255, 0.1);
   
   /* 毛玻璃效果 */
   backdrop-filter: blur(10px);
@@ -72,6 +81,15 @@
   align-items: center;
   gap: 12px;
   cursor: pointer;
+  transition: gap 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.navbar-brand img {
+  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.navbar-brand p {
+  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
 /* 导航菜单 */
@@ -79,6 +97,7 @@
   display: flex;
   align-items: center;
   gap: 8px;
+  transition: gap 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
 /* 右侧操作区域 */
@@ -86,6 +105,31 @@
   display: flex;
   align-items: center;
   gap: 8px;
+  transition: gap 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+/* 滚动状态下的微调 */
+.navbar-container.scrolled .navbar-brand {
+  gap: 10px;
+}
+
+.navbar-container.scrolled .navbar-brand img {
+  width: 36px;
+  height: 36px;
+}
+
+.navbar-container.scrolled .navbar-menu {
+  gap: 6px;
+}
+
+.navbar-container.scrolled .navbar-actions {
+  gap: 6px;
+}
+
+/* 菜单项和按钮的平滑过渡 */
+.navbar-menu button,
+.navbar-actions button {
+  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
 /* 响应式：移动端 */

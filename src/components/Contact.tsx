@@ -4,11 +4,13 @@ import { useTranslation } from 'react-i18next'
 import GlassCard from './ui/GlassCard'
 import SpotlightCard from './ui/SpotlightCard'
 import GradientText from './ui/GradientText'
+import { useTheme } from '../contexts/ThemeContext'
 // @ts-expect-error - Hyperspeed is a JSX component without TypeScript definitions
 import Hyperspeed from './Hyperspeed'
 
 export default function Contact() {
   const { t } = useTranslation()
+  const { theme } = useTheme()
 
   const contacts = [
     {
@@ -66,15 +68,60 @@ export default function Contact() {
     t('contact.life3')
   ]
 
+  // Hyperspeed 完整配置：亮色模式只改变背景为浅色
+  const hyperspeedOptions = theme === 'light' 
+    ? {
+        onSpeedUp: () => {},
+        onSlowDown: () => {},
+        distortion: 'turbulentDistortion',
+        length: 400,
+        roadWidth: 10,
+        islandWidth: 2,
+        lanesPerRoad: 4,
+        fov: 90,
+        fovSpeedUp: 150,
+        speedUp: 2,
+        carLightsFade: 0.4,
+        totalSideLightSticks: 20,
+        lightPairsPerRoadWay: 40,
+        shoulderLinesWidthPercentage: 0.05,
+        brokenLinesWidthPercentage: 0.1,
+        brokenLinesLengthPercentage: 0.5,
+        lightStickWidth: [0.12, 0.5],
+        lightStickHeight: [1.3, 1.7],
+        movingAwaySpeed: [60, 80],
+        movingCloserSpeed: [-120, -160],
+        carLightsLength: [400 * 0.03, 400 * 0.2],
+        carLightsRadius: [0.05, 0.14],
+        carWidthPercentage: [0.3, 0.5],
+        carShiftX: [-0.8, 0.8],
+        carFloorSeparation: [0, 5],
+        colors: {
+          roadColor: 0x080808,
+          islandColor: 0x0a0a0a,
+          background: 0xf0f0f5,
+          shoulderLines: 0xffffff,
+          brokenLines: 0xffffff,
+          leftCars: [0xd856bf, 0x6750a2, 0xc247ac],
+          rightCars: [0x03b3c3, 0x0e5ea5, 0x324555],
+          sticks: 0x03b3c3
+        }
+      }
+    : undefined; // 暗色模式使用默认配置
+
   return (
     <section id="contact" className="relative py-20 px-4 overflow-hidden">
       {/* Hyperspeed Background */}
       <div className="absolute inset-0 z-0">
-        <Hyperspeed />
+        <Hyperspeed effectOptions={hyperspeedOptions} />
       </div>
       
       {/* Gradient Overlay - pointer-events-none to allow mouse interaction with background */}
-      <div className="absolute inset-0 z-[1] bg-gradient-to-b from-gray-50/60 via-white/60 to-gray-50/60 dark:from-gray-950/60 dark:via-gray-900/60 dark:to-gray-950/60 pointer-events-none" />
+      <div className={`absolute inset-0 z-[1] pointer-events-none ${
+        theme === 'light' 
+          ? 'bg-gradient-to-b from-gray-50/30 via-white/20 to-gray-50/30' 
+          : 'bg-gradient-to-b from-gray-950/60 via-gray-900/60 to-gray-950/60'
+      }`} />
       
       <div className="relative max-w-7xl mx-auto z-10 pointer-events-none">
         <motion.div

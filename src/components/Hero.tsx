@@ -21,7 +21,7 @@ export default function Hero() {
       <div className="absolute inset-0 z-[1] bg-gradient-to-br from-blue-50/30 via-white/20 to-purple-50/30 dark:from-gray-900/30 dark:via-blue-900/20 dark:to-purple-900/30 pointer-events-none" />
 
       {/* Content - Flexible Layout with Photo and Text */}
-      <div className="relative w-full h-full z-10 flex items-center justify-center pt-16 lg:pt-30 pointer-events-none">
+      <div className="relative w-full h-full z-10 flex items-center justify-center pt-24 lg:pt-32 pointer-events-none">
         <div className="w-full max-w-7xl mx-auto px-4">
           <div className="flex flex-col lg:flex-row items-center lg:items-start gap-6 lg:gap-8 min-h-[600px] lg:min-h-screen">
             {/* Left: Profile Card - Responsive Size */}
