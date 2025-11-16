@@ -3,11 +3,13 @@ import { Heart, Eye, Target, Sparkles } from 'lucide-react'
 import { useTranslation } from 'react-i18next'
 import SpotlightCard from './ui/SpotlightCard'
 import GradientText from './ui/GradientText'
+import { useTheme } from '../contexts/ThemeContext'
 // @ts-ignore
-import Silk from './Silk'
+import FloatingLines from './FloatingLines'
 
 export default function About() {
   const { t } = useTranslation()
+  const { theme } = useTheme()
   
   const traits = [
     { icon: <Heart className="w-6 h-6" />, text: t('about.trait1'), color: 'from-red-500 to-pink-500' },
@@ -19,13 +21,27 @@ export default function About() {
   const doing = [t('about.doing1'), t('about.doing2'), t('about.doing3'), t('about.doing4'), t('about.doing5')]
   const goodAt = [t('about.goodAt1'), t('about.goodAt2'), t('about.goodAt3'), t('about.goodAt4'), t('about.goodAt5')]
 
+  // Floating Lines 渐变色配置：浅色模式使用温暖紫粉色渐变，暗色模式使用冷艳蓝紫色渐变
+  const linesGradient = theme === 'light' 
+    ? ['#ec4899', '#d946ef', '#c084fc', '#a78bfa', '#818cf8'] // 粉紫色渐变
+    : ['#3b82f6', '#6366f1', '#8b5cf6', '#a855f7', '#d946ef'] // 蓝紫色渐变
+
   return (
-    <section id="about" className="relative py-20 px-4 bg-gray-50 dark:bg-gray-950 overflow-hidden">
-      {/* Silk Background */}
+    <section id="about" className="relative py-20 px-4 overflow-hidden">
+      {/* Floating Lines Background */}
       <div className="absolute inset-0 z-0">
-        <Silk />
+        <FloatingLines 
+          linesGradient={linesGradient}
+          lineCount={5}
+          lineDistance={5}
+          interactive={true}
+          parallax={true}
+          animationSpeed={1}
+        />
       </div>
-      <div className="absolute inset-0 bg-gradient-to-b from-white/50 via-gray-50/50 to-white/50 dark:from-gray-900/50 dark:via-gray-950/50 dark:to-gray-900/50 z-0" />
+      
+      {/* Gradient Overlay - pointer-events-none to allow mouse interaction with background */}
+      <div className="absolute inset-0 z-[1] bg-gradient-to-b from-white/40 via-gray-50/40 to-white/40 dark:from-gray-900/40 dark:via-gray-950/40 dark:to-gray-900/40 pointer-events-none" />
       
       <div className="relative max-w-7xl mx-auto z-10">
         <motion.h2

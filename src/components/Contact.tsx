@@ -61,14 +61,16 @@ export default function Contact() {
   ]
 
   return (
-    <section id="contact" className="relative py-20 px-4 bg-white dark:bg-gray-900 overflow-hidden">
+    <section id="contact" className="relative py-20 px-4 overflow-hidden">
       {/* Hyperspeed Background */}
       <div className="absolute inset-0 z-0">
         <Hyperspeed />
       </div>
-      <div className="absolute inset-0 bg-gradient-to-b from-gray-50/70 via-white/70 to-gray-50/70 dark:from-gray-950/70 dark:via-gray-900/70 dark:to-gray-950/70 z-0" />
       
-      <div className="relative max-w-7xl mx-auto z-10">
+      {/* Gradient Overlay - pointer-events-none to allow mouse interaction with background */}
+      <div className="absolute inset-0 z-[1] bg-gradient-to-b from-gray-50/60 via-white/60 to-gray-50/60 dark:from-gray-950/60 dark:via-gray-900/60 dark:to-gray-950/60 pointer-events-none" />
+      
+      <div className="relative max-w-7xl mx-auto z-10" style={{ pointerEvents: 'auto' }}>
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -84,7 +86,7 @@ export default function Contact() {
         </motion.div>
 
         {/* Contact Cards */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12" style={{ pointerEvents: 'auto' }}>
           {contacts.map((contact, index) => (
             <motion.div
               key={index}
@@ -92,8 +94,9 @@ export default function Contact() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: index * 0.1 }}
+              style={{ pointerEvents: 'auto' }}
             >
-              <GlassCard className="h-full group cursor-pointer">
+              <GlassCard className="h-full group cursor-pointer [pointer-events:auto]">
                 <div className="flex flex-col items-center text-center">
                   <motion.div
                     whileHover={{ scale: 1.1, rotate: 5 }}
@@ -122,13 +125,13 @@ export default function Contact() {
         </div>
 
         {/* Communication Tips */}
-        <div className="grid md:grid-cols-2 gap-8 mb-12">
+        <div className="grid md:grid-cols-2 gap-8 mb-12" style={{ pointerEvents: 'auto' }}>
           <motion.div
             initial={{ opacity: 0, x: -20 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
           >
-            <SpotlightCard className="p-8 h-full" spotlightColor="rgba(59, 130, 246, 0.15)">
+            <SpotlightCard className="p-8 h-full [pointer-events:auto]" spotlightColor="rgba(59, 130, 246, 0.15)">
               <h3 className="text-2xl font-bold text-blue-600 dark:text-blue-400 mb-6">💼 {t('contact.workCommunication')}</h3>
               <div className="space-y-4">
                 {workTips.map((tip, index) => (
@@ -155,7 +158,7 @@ export default function Contact() {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
           >
-            <SpotlightCard className="p-8 h-full" spotlightColor="rgba(168, 85, 247, 0.15)">
+            <SpotlightCard className="p-8 h-full [pointer-events:auto]" spotlightColor="rgba(168, 85, 247, 0.15)">
               <h3 className="text-2xl font-bold text-purple-600 dark:text-purple-400 mb-6">🤞 {t('contact.lifeCommunication')}</h3>
               <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
                 {t('contact.lifeTip')}
@@ -171,7 +174,7 @@ export default function Contact() {
           viewport={{ once: true }}
           className="text-center"
         >
-          <GlassCard className="inline-block">
+          <GlassCard className="inline-block [pointer-events:auto]">
             <motion.img
               whileHover={{ scale: 1.05 }}
               src="https://eyre-halo.oss-cn-hangzhou.aliyuncs.com/image-rp2a.png"

@@ -21,12 +21,16 @@ export default function Knowledge() {
   ]
 
   return (
-    <section id="knowledge" className="relative py-20 px-4 bg-white dark:bg-gray-900 overflow-hidden">
+    <section id="knowledge" className="relative py-20 px-4 overflow-hidden">
       {/* Particles Background */}
       <div className="absolute inset-0 z-0">
         <Particles />
       </div>
-      <div className="max-w-7xl mx-auto">
+      
+      {/* Gradient Overlay - pointer-events-none to allow mouse interaction with background */}
+      <div className="absolute inset-0 z-[1] bg-white/30 dark:bg-gray-900/30 pointer-events-none" />
+      
+      <div className="relative max-w-7xl mx-auto z-10">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}

@@ -49,12 +49,14 @@ export default function Skills() {
   ]
 
   return (
-    <section id="skills" className="relative py-20 px-4 bg-gray-50 dark:bg-gray-950 overflow-hidden">
+    <section id="skills" className="relative py-20 px-4 overflow-hidden">
       {/* GridScan Background */}
       <div className="absolute inset-0 z-0">
         <GridScan />
       </div>
-      <div className="absolute inset-0 bg-gradient-to-b from-white/60 via-gray-50/60 to-white/60 dark:from-gray-900/60 dark:via-gray-950/60 dark:to-gray-900/60 z-0" />
+      
+      {/* Gradient Overlay - pointer-events-none to allow mouse interaction with background */}
+      <div className="absolute inset-0 z-[1] bg-gradient-to-b from-white/50 via-gray-50/50 to-white/50 dark:from-gray-900/50 dark:via-gray-950/50 dark:to-gray-900/50 pointer-events-none" />
       
       <div className="relative max-w-7xl mx-auto z-10">
         <motion.h2

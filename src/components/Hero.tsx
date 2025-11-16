@@ -10,11 +10,14 @@ export default function Hero() {
   const { t } = useTranslation()
 
   return (
-    <section id="hero" className="relative min-h-screen flex items-center justify-center px-4 py-20 overflow-hidden bg-gradient-to-br from-blue-50 via-white to-purple-50 dark:from-gray-900 dark:via-blue-900/20 dark:to-purple-900/20">
+    <section id="hero" className="relative min-h-screen flex items-center justify-center px-4 py-20 overflow-hidden">
       {/* Liquid Ether Background */}
       <div className="absolute inset-0 z-0">
         <LiquidEther />
       </div>
+      
+      {/* Gradient Overlay - pointer-events-none to allow mouse interaction with background */}
+      <div className="absolute inset-0 z-[1] bg-gradient-to-br from-blue-50/30 via-white/20 to-purple-50/30 dark:from-gray-900/30 dark:via-blue-900/20 dark:to-purple-900/30 pointer-events-none" />
 
       {/* Content */}
       <div className="relative max-w-5xl w-full z-10">

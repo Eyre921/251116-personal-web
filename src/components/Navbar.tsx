@@ -71,39 +71,24 @@ export default function Navbar() {
 
       <NavbarContent justify="end">
         <NavbarItem>
-          <Dropdown
-            classNames={{
-              content: "bg-white/95 dark:bg-gray-800/95 backdrop-blur-xl border border-gray-200 dark:border-white/10"
-            }}
-          >
+          <Dropdown>
             <DropdownTrigger>
-              <motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }}>
-                <Button
-                  variant="light"
-                  isIconOnly
-                  className="text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-white/10"
-                >
-                  <Languages className="w-5 h-5" />
-                </Button>
-              </motion.div>
+              <Button
+                variant="light"
+                isIconOnly
+                className="text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-white/10"
+              >
+                <Languages className="w-5 h-5" />
+              </Button>
             </DropdownTrigger>
             <DropdownMenu
               aria-label="Language selection"
               onAction={(key) => changeLanguage(key as string)}
-              classNames={{
-                base: "text-gray-900 dark:text-white"
-              }}
             >
-              <DropdownItem 
-                key="zh"
-                className="hover:bg-gray-100 dark:hover:bg-white/10"
-              >
+              <DropdownItem key="zh">
                 🇨🇳 中文
               </DropdownItem>
-              <DropdownItem 
-                key="en"
-                className="hover:bg-gray-100 dark:hover:bg-white/10"
-              >
+              <DropdownItem key="en">
                 🇬🇧 English
               </DropdownItem>
             </DropdownMenu>
