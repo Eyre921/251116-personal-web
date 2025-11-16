@@ -87,12 +87,13 @@ export default function Navbar() {
             aria-label="Language selection"
             onAction={(key) => changeLanguage(key as string)}
           >
-            <DropdownItem key="zh">
-              🇨🇳 中文
-            </DropdownItem>
-            <DropdownItem key="en">
-              🇬🇧 English
-            </DropdownItem>
+            <DropdownItem key="zh">🇨🇳 中文（简体）</DropdownItem>
+            <DropdownItem key="zh-TW">🇭🇰 中文（繁體）</DropdownItem>
+            <DropdownItem key="en">🇬🇧 English</DropdownItem>
+            <DropdownItem key="es">🇪🇸 Español</DropdownItem>
+            <DropdownItem key="fr">🇫🇷 Français</DropdownItem>
+            <DropdownItem key="ru">🇷🇺 Русский</DropdownItem>
+            <DropdownItem key="ar">🇸🇦 العربية</DropdownItem>
           </DropdownMenu>
         </Dropdown>
 
