@@ -21,7 +21,8 @@ export default function LiquidEther({
   autoIntensity = 2.2,
   takeoverDuration = 0.25,
   autoResumeDelay = 1000,
-  autoRampDuration = 0.6
+  autoRampDuration = 0.6,
+  backgroundMode = 'dark'
 }) {
   const mountRef = useRef(null);
   const webglRef = useRef(null);
@@ -65,7 +66,7 @@ export default function LiquidEther({
     }
 
     const paletteTex = makePaletteTexture(colors);
-    const bgVec4 = new THREE.Vector4(0, 0, 0, 0); // always transparent
+    const bgVec4 = backgroundMode === 'light' ? new THREE.Vector4(1, 1, 1, 0) : new THREE.Vector4(0, 0, 0, 0);
 
     class CommonClass {
       constructor() {
@@ -1110,7 +1111,8 @@ export default function LiquidEther({
     autoIntensity,
     takeoverDuration,
     autoResumeDelay,
-    autoRampDuration
+    autoRampDuration,
+    backgroundMode
   ]);
 
   useEffect(() => {

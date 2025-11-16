@@ -2,6 +2,7 @@ import { motion } from 'framer-motion'
 import { Github, Mail, MapPin, Sparkles } from 'lucide-react'
 import { useTranslation } from 'react-i18next'
 import GradientText from './ui/GradientText'
+import { useTheme } from '../contexts/ThemeContext'
 // @ts-expect-error - LiquidEther is a JSX component without TypeScript definitions
 import LiquidEther from './LiquidEther'
 // @ts-expect-error - ProfileCard is a JSX component without TypeScript definitions
@@ -9,12 +10,18 @@ import ProfileCard from './ProfileCard'
 
 export default function Hero() {
   const { t } = useTranslation()
+  const { theme } = useTheme()
+
+  // LiquidEther 配色方案：亮色模式使用柔和的浅色系
+  const liquidEtherColors = theme === 'light'
+    ? ['#ffd6e8', '#c8b3ff', '#a8d8ff'] // 浅粉色、浅紫色、浅蓝色
+    : ['#5227FF', '#FF9FFC', '#B19EEF'] // 默认深紫粉色
 
   return (
     <section id="hero" className="relative min-h-screen flex items-center justify-center px-4 py-20 overflow-hidden">
       {/* Liquid Ether Background */}
       <div className="absolute inset-0 z-0">
-        <LiquidEther />
+        <LiquidEther colors={liquidEtherColors} backgroundMode={theme === 'light' ? 'light' : 'dark'} />
       </div>
       
       {/* Gradient Overlay - pointer-events-none to allow mouse interaction with background */}
