@@ -154,6 +154,11 @@ export default function Hero() {
                 <p className="text-sm text-gray-600 dark:text-gray-400">
                   {t('hero.quoteDesc')}
                 </p>
+                {isMobile && (
+                  <p className="text-xs text-gray-500 dark:text-gray-500 mt-2">
+                    {t('hero.mobileTip')}
+                  </p>
+                )}
               </motion.div>
             </div>
           </div>
