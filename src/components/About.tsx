@@ -6,10 +6,12 @@ import GradientText from './ui/GradientText'
 import { useTheme } from '../contexts/ThemeContext'
 // @ts-expect-error - FloatingLines is a JSX component without TypeScript definitions
 import FloatingLines from './FloatingLines'
+import { isMobileOrTablet } from '@/lib/utils'
 
 export default function About() {
   const { t } = useTranslation()
   const { theme } = useTheme()
+  const isMobile = isMobileOrTablet()
   
   const traits = [
     { icon: <Heart className="w-6 h-6" />, text: t('about.trait1'), color: 'from-red-500 to-pink-500' },
@@ -34,10 +36,12 @@ export default function About() {
           linesGradient={linesGradient}
           lineCount={6}
           lineDistance={4}
-          interactive={true}
-          parallax={true}
-          animationSpeed={1}
+          interactive={!isMobile}
+          parallax={!isMobile}
+          animationSpeed={isMobile ? 0.6 : 1}
           mixBlendMode="screen"
+          maxPixelRatio={isMobile ? 1.2 : 2}
+          staticMode={isMobile}
         />
       </div>
       

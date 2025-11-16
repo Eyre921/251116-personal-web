@@ -1,6 +1,7 @@
 import { useRef, useEffect } from 'react';
 import { gsap } from 'gsap';
 import './ChromaGrid.css';
+import { isMobileOrTablet } from '@/lib/utils'
 
 export const ChromaGrid = ({
   items,
@@ -135,18 +136,18 @@ export const ChromaGrid = ({
       ref={rootRef}
       className={`chroma-grid ${className}`}
       style={{
-        '--r': `${radius}px`,
+        '--r': `${(isMobile ? Math.max(160, radius * 0.6) : radius)}px`,
         '--cols': columns,
         '--rows': rows
       }}
-      onPointerMove={handleMove}
-      onPointerLeave={handleLeave}
+      onPointerMove={isMobile ? undefined : handleMove}
+      onPointerLeave={isMobile ? undefined : handleLeave}
     >
       {data.map((c, i) => (
         <article
           key={i}
           className="chroma-card"
-          onMouseMove={handleCardMove}
+          onMouseMove={isMobile ? undefined : handleCardMove}
           onClick={() => handleCardClick(c.url)}
           style={{
             '--card-border': c.borderColor || 'transparent',
@@ -172,3 +173,4 @@ export const ChromaGrid = ({
 };
 
 export default ChromaGrid;
+  const isMobile = isMobileOrTablet();

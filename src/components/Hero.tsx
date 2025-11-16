@@ -3,6 +3,7 @@ import { Github, Mail, MapPin, Sparkles } from 'lucide-react'
 import { useTranslation } from 'react-i18next'
 import GradientText from './ui/GradientText'
 import { useTheme } from '../contexts/ThemeContext'
+import { isMobileOrTablet } from '@/lib/utils'
 // @ts-expect-error - LiquidEther is a JSX component without TypeScript definitions
 import LiquidEther from './LiquidEther'
 // @ts-expect-error - ProfileCard is a JSX component without TypeScript definitions
@@ -11,6 +12,7 @@ import ProfileCard from './ProfileCard'
 export default function Hero() {
   const { t } = useTranslation()
   const { theme } = useTheme()
+  const isMobile = isMobileOrTablet()
 
   // LiquidEther 配色方案：亮色模式使用柔和的浅色系
   const liquidEtherColors = theme === 'light'
@@ -21,7 +23,17 @@ export default function Hero() {
     <section id="hero" className="relative min-h-screen flex items-center justify-center px-4 py-20 overflow-hidden">
       {/* Liquid Ether Background */}
       <div className="absolute inset-0 z-0">
-        <LiquidEther colors={liquidEtherColors} backgroundMode={theme === 'light' ? 'light' : 'dark'} />
+        <LiquidEther 
+          colors={liquidEtherColors} 
+          backgroundMode={theme === 'light' ? 'light' : 'dark'}
+          autoDemo={!isMobile}
+          autoIntensity={isMobile ? 1.0 : 2.2}
+          resolution={isMobile ? 0.25 : 0.5}
+          cursorSize={isMobile ? 60 : 100}
+          mouseForce={isMobile ? 10 : 20}
+          maxPixelRatio={isMobile ? 1.2 : 2}
+          staticMode={isMobile}
+        />
       </div>
       
       {/* Gradient Overlay - pointer-events-none to allow mouse interaction with background */}
@@ -50,7 +62,7 @@ export default function Hero() {
                 handle="Eyre921"
                 showUserInfo={false}
                 enableTilt={true}
-                enableMobileTilt={true}
+                enableMobileTilt={isMobile ? false : true}
                 behindGlowEnabled={true}
                 behindGlowColor="rgba(99, 102, 241, 0.3)"
                 behindGlowSize="40%"

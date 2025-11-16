@@ -5,3 +5,16 @@
   height: 100%;
   touch-action: none;
 }
+
+.liquid-ether-container canvas {
+  display: block;
+}
+
+@media (hover: none), (pointer: coarse) {
+  .liquid-ether-container {
+    touch-action: auto;
+  }
+  .liquid-ether-container canvas {
+    pointer-events: none;
+  }
+}

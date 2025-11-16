@@ -6,9 +6,11 @@ import GlassCard from './ui/GlassCard'
 import GradientText from './ui/GradientText'
 // @ts-expect-error - GridScan is a JSX component without TypeScript definitions
 import { GridScan } from './GridScan'
+import { isMobileOrTablet } from '@/lib/utils'
 
 export default function Skills() {
   const { t } = useTranslation()
+  const isMobile = isMobileOrTablet()
   
   const hobbies = [
     { icon: <Camera className="w-6 h-6" />, text: t('skills.hobby1'), color: 'from-purple-500 to-pink-500' },
@@ -52,7 +54,16 @@ export default function Skills() {
     <section id="skills" className="relative py-20 px-4 overflow-hidden">
       {/* GridScan Background */}
       <div className="absolute inset-0 z-0">
-        <GridScan />
+        <GridScan 
+          enablePost={isMobile ? false : true}
+          bloomIntensity={isMobile ? 0 : undefined}
+          bloomThreshold={isMobile ? 0 : undefined}
+          bloomSmoothing={isMobile ? 0 : undefined}
+          chromaticAberration={isMobile ? 0 : undefined}
+          enableGyro={isMobile ? false : undefined}
+          scanOpacity={isMobile ? 0.25 : 0.4}
+          className={isMobile ? 'pointer-events-none' : ''}
+        />
       </div>
       
       {/* Gradient Overlay - pointer-events-none to allow mouse interaction with background */}

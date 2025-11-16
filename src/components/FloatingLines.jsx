@@ -244,7 +244,9 @@ export default function FloatingLines({
   mouseDamping = 0.05,
   parallax = true,
   parallaxStrength = 0.2,
-  mixBlendMode = 'screen'
+  mixBlendMode = 'screen',
+  maxPixelRatio = 2,
+  staticMode = false
 }) {
   const containerRef = useRef(null);
   const targetMouseRef = useRef(new Vector2(-1000, -1000));
@@ -285,7 +287,8 @@ export default function FloatingLines({
     camera.position.z = 1;
 
     const renderer = new WebGLRenderer({ antialias: true, alpha: false });
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
+    const maxPx = Math.max(1, Math.min(maxPixelRatio || 2, 2));
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, maxPx));
     renderer.domElement.style.width = '100%';
     renderer.domElement.style.height = '100%';
     containerRef.current.appendChild(renderer.domElement);
@@ -405,13 +408,13 @@ export default function FloatingLines({
       targetInfluenceRef.current = 0.0;
     };
 
-    if (interactive) {
+    if (interactive && !staticMode) {
       renderer.domElement.addEventListener('pointermove', handlePointerMove);
       renderer.domElement.addEventListener('pointerleave', handlePointerLeave);
     }
 
     let raf = 0;
-    const renderLoop = () => {
+    const renderFrame = () => {
       uniforms.iTime.value = clock.getElapsedTime();
 
       if (interactive) {
@@ -428,9 +431,16 @@ export default function FloatingLines({
       }
 
       renderer.render(scene, camera);
-      raf = requestAnimationFrame(renderLoop);
     };
-    renderLoop();
+    if (staticMode) {
+      renderFrame();
+    } else {
+      const renderLoop = () => {
+        renderFrame();
+        raf = requestAnimationFrame(renderLoop);
+      };
+      renderLoop();
+    }
 
     return () => {
       cancelAnimationFrame(raf);
@@ -439,7 +449,7 @@ export default function FloatingLines({
         ro.disconnect();
       }
 
-      if (interactive) {
+      if (interactive && !staticMode) {
         renderer.domElement.removeEventListener('pointermove', handlePointerMove);
         renderer.domElement.removeEventListener('pointerleave', handlePointerLeave);
       }

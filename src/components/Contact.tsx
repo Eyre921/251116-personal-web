@@ -7,10 +7,12 @@ import GradientText from './ui/GradientText'
 import { useTheme } from '../contexts/ThemeContext'
 // @ts-expect-error - Hyperspeed is a JSX component without TypeScript definitions
 import Hyperspeed from './Hyperspeed'
+import { isMobileOrTablet } from '@/lib/utils'
 
 export default function Contact() {
   const { t } = useTranslation()
   const { theme } = useTheme()
+  const isMobile = isMobileOrTablet()
 
   const contacts = [
     {
@@ -113,7 +115,7 @@ export default function Contact() {
     <section id="contact" className="relative py-20 px-4 overflow-hidden">
       {/* Hyperspeed Background */}
       <div className="absolute inset-0 z-0">
-        <Hyperspeed effectOptions={hyperspeedOptions} />
+        {!isMobile && <Hyperspeed effectOptions={hyperspeedOptions} />}
       </div>
       
       {/* Gradient Overlay - pointer-events-none to allow mouse interaction with background */}

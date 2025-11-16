@@ -4,12 +4,14 @@ import { useTranslation } from 'react-i18next'
 import GlassCard from './ui/GlassCard'
 import GradientText from './ui/GradientText'
 import { useTheme } from '../contexts/ThemeContext'
+import { isMobileOrTablet } from '@/lib/utils'
 // @ts-expect-error - Particles is a JSX component without TypeScript definitions
 import Particles from './Particles'
 
 export default function Knowledge() {
   const { t } = useTranslation()
   const { theme } = useTheme()
+  const isMobile = isMobileOrTablet()
   
   const knowledgeAreas = [
     { icon: <Brain className="w-8 h-8" />, title: t('knowledge.ai'), description: t('knowledge.aiDesc'), color: 'from-blue-500 to-cyan-500', link: "https://l6ncjsjwvj.feishu.cn/wiki/JVZ0wnP56ikEMKkXPqAc4m1Inze" },
@@ -33,11 +35,11 @@ export default function Knowledge() {
       <div className="absolute inset-0 z-0">
         <Particles 
           particleColors={particleColors}
-          particleCount={150}
+          particleCount={isMobile ? 40 : 150}
           particleSpread={10}
-          speed={0.15}
-          moveParticlesOnHover={true}
-          particleHoverFactor={1.5}
+          speed={isMobile ? 0.06 : 0.15}
+          moveParticlesOnHover={isMobile ? false : true}
+          particleHoverFactor={isMobile ? 1.0 : 1.5}
         />
       </div>
       

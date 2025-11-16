@@ -22,7 +22,9 @@ export default function LiquidEther({
   takeoverDuration = 0.25,
   autoResumeDelay = 1000,
   autoRampDuration = 0.6,
-  backgroundMode = 'dark'
+  backgroundMode = 'dark',
+  maxPixelRatio = 2,
+  staticMode = false
 }) {
   const mountRef = useRef(null);
   const webglRef = useRef(null);
@@ -86,7 +88,8 @@ export default function LiquidEther({
       }
       init(container) {
         this.container = container;
-        this.pixelRatio = Math.min(window.devicePixelRatio || 1, 2);
+        const maxPx = Math.max(1, Math.min(maxPixelRatio || 2, 2));
+        this.pixelRatio = Math.min(window.devicePixelRatio || 1, maxPx);
         this.resize();
         this.renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
         this.renderer.autoClear = false;
@@ -1042,7 +1045,11 @@ export default function LiquidEther({
     };
     applyOptionsFromProps();
 
-    webgl.start();
+    if (staticMode) {
+      webgl.render();
+    } else {
+      webgl.start();
+    }
 
     // IntersectionObserver to pause rendering when not visible
     const io = new IntersectionObserver(
@@ -1051,10 +1058,14 @@ export default function LiquidEther({
         const isVisible = entry.isIntersecting && entry.intersectionRatio > 0;
         isVisibleRef.current = isVisible;
         if (!webglRef.current) return;
-        if (isVisible && !document.hidden) {
-          webglRef.current.start();
-        } else {
+        if (staticMode) {
           webglRef.current.pause();
+        } else {
+          if (isVisible && !document.hidden) {
+            webglRef.current.start();
+          } else {
+            webglRef.current.pause();
+          }
         }
       },
       { threshold: [0, 0.01, 0.1] }
