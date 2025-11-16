@@ -68,7 +68,7 @@ void main() {
 }
 `;
 
-const SilkPlane = forwardRef(function SilkPlane({ uniforms }, ref) {
+const SilkPlane = forwardRef(function SilkPlane({ uniforms, staticMode = false }, ref) {
   const { viewport } = useThree();
 
   useLayoutEffect(() => {
@@ -78,6 +78,7 @@ const SilkPlane = forwardRef(function SilkPlane({ uniforms }, ref) {
   }, [ref, viewport]);
 
   useFrame((_, delta) => {
+    if (staticMode) return;
     ref.current.material.uniforms.uTime.value += 0.1 * delta;
   });
 
@@ -90,7 +91,7 @@ const SilkPlane = forwardRef(function SilkPlane({ uniforms }, ref) {
 });
 SilkPlane.displayName = 'SilkPlane';
 
-const Silk = ({ speed = 5, scale = 1, color = '#7B7481', noiseIntensity = 1.5, rotation = 0 }) => {
+const Silk = ({ speed = 5, scale = 1, color = '#7B7481', noiseIntensity = 1.5, rotation = 0, maxDpr = 2, staticMode = false }) => {
   const meshRef = useRef();
 
   const uniforms = useMemo(
@@ -106,8 +107,8 @@ const Silk = ({ speed = 5, scale = 1, color = '#7B7481', noiseIntensity = 1.5, r
   );
 
   return (
-    <Canvas dpr={[1, 2]} frameloop="always">
-      <SilkPlane ref={meshRef} uniforms={uniforms} />
+    <Canvas dpr={[1, maxDpr]} frameloop={staticMode ? 'never' : 'always'}>
+      <SilkPlane ref={meshRef} uniforms={uniforms} staticMode={staticMode} />
     </Canvas>
   );
 };
