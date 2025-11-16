@@ -47,8 +47,8 @@ export default function Skills() {
   ]
 
   return (
-    <section id="skills" className="relative py-20 px-4 bg-gray-950 overflow-hidden">
-      <div className="absolute inset-0 bg-gradient-to-b from-gray-900 via-gray-950 to-gray-900" />
+    <section id="skills" className="relative py-20 px-4 bg-gray-50 dark:bg-gray-950 overflow-hidden">
+      <div className="absolute inset-0 bg-gradient-to-b from-white via-gray-50 to-white dark:from-gray-900 dark:via-gray-950 dark:to-gray-900" />
       
       <div className="relative max-w-7xl mx-auto z-10">
         <motion.h2
@@ -68,7 +68,7 @@ export default function Skills() {
           className="mb-12"
         >
           <SpotlightCard className="p-8" spotlightColor="rgba(168, 85, 247, 0.15)">
-            <h3 className="text-3xl font-bold text-purple-400 mb-8 text-center">
+            <h3 className="text-3xl font-bold text-purple-600 dark:text-purple-400 mb-8 text-center">
               {t('skills.hobbiesTitle')}
             </h3>
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -80,12 +80,12 @@ export default function Skills() {
                   viewport={{ once: true }}
                   transition={{ delay: index * 0.1 }}
                   whileHover={{ scale: 1.05 }}
-                  className="flex items-center gap-3 p-4 rounded-xl bg-white/5 border border-white/10 backdrop-blur-sm"
+                  className="flex items-center gap-3 p-4 rounded-xl bg-gray-100 dark:bg-white/5 border border-gray-200 dark:border-white/10 backdrop-blur-sm"
                 >
-                  <div className={`p-3 rounded-lg bg-gradient-to-br ${hobby.color}`}>
+                  <div className={`p-3 rounded-lg bg-gradient-to-br ${hobby.color} text-white`}>
                     {hobby.icon}
                   </div>
-                  <span className="text-gray-300 flex-1">{hobby.text}</span>
+                  <span className="text-gray-700 dark:text-gray-300 flex-1">{hobby.text}</span>
                 </motion.div>
               ))}
             </div>
@@ -104,10 +104,10 @@ export default function Skills() {
             >
               <GlassCard className="h-full">
                 <div className={`w-12 h-1 rounded-full bg-gradient-to-r ${pursuit.color} mb-4`} />
-                <h4 className="text-lg font-bold text-white mb-3">
+                <h4 className="text-lg font-bold text-gray-900 dark:text-white mb-3">
                   {pursuit.title}
                 </h4>
-                <p className="text-sm text-gray-400 leading-relaxed">
+                <p className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
                   {pursuit.description}
                 </p>
               </GlassCard>
@@ -123,8 +123,8 @@ export default function Skills() {
         >
           <SpotlightCard className="p-8" spotlightColor="rgba(234, 179, 8, 0.15)">
             <div className="flex items-center justify-center gap-3 mb-8">
-              <Trophy className="w-8 h-8 text-yellow-400" />
-              <h3 className="text-3xl font-bold text-yellow-400">
+              <Trophy className="w-8 h-8 text-yellow-600 dark:text-yellow-400" />
+              <h3 className="text-3xl font-bold text-yellow-600 dark:text-yellow-400">
                 🌟 {t('skills.milestonesTitle')}
               </h3>
             </div>
@@ -136,12 +136,12 @@ export default function Skills() {
                   whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: index * 0.05 }}
-                  className="flex items-start gap-3 p-4 rounded-xl bg-yellow-500/5 border border-yellow-500/20"
+                  className="flex items-start gap-3 p-4 rounded-xl bg-yellow-50 dark:bg-yellow-500/5 border border-yellow-200 dark:border-yellow-500/20"
                 >
                   <span className="flex-shrink-0 w-8 h-8 rounded-full bg-gradient-to-br from-yellow-400 to-orange-500 text-white flex items-center justify-center font-bold text-sm">
                     {index + 1}
                   </span>
-                  <span className="text-gray-300 flex-1 pt-1">{milestone}</span>
+                  <span className="text-gray-700 dark:text-gray-300 flex-1 pt-1">{milestone}</span>
                 </motion.div>
               ))}
             </div>

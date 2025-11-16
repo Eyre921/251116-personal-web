@@ -8,17 +8,14 @@ export default function Hero() {
   const { t } = useTranslation()
 
   return (
-    <section id="hero" className="relative min-h-screen flex items-center justify-center px-4 py-20 overflow-hidden">
-      {/* Animated background */}
-      <div className="absolute inset-0 bg-gradient-to-br from-gray-900 via-blue-900/20 to-purple-900/20" />
-      
+    <section id="hero" className="relative min-h-screen flex items-center justify-center px-4 py-20 overflow-hidden bg-gradient-to-br from-blue-50 via-white to-purple-50 dark:from-gray-900 dark:via-blue-900/20 dark:to-purple-900/20">
       {/* Grid pattern */}
       <div 
         className="absolute inset-0 opacity-20"
         style={{
           backgroundImage: `
-            linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
-            linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px)
+            linear-gradient(rgba(100, 100, 100, 0.05) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(100, 100, 100, 0.05) 1px, transparent 1px)
           `,
           backgroundSize: '50px 50px',
         }}
@@ -39,11 +36,11 @@ export default function Hero() {
             }}
             className="mb-8 inline-block relative"
           >
-            <div className="absolute inset-0 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full blur-2xl opacity-50 animate-pulse" />
+            <div className="absolute inset-0 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full blur-2xl opacity-30 dark:opacity-50 animate-pulse" />
             <img
               src="https://eyre-halo.oss-cn-hangzhou.aliyuncs.com/logo2025-wk6w.png"
               alt="Eyre Logo"
-              className="relative w-32 h-32 rounded-full border-4 border-white/20 shadow-2xl"
+              className="relative w-32 h-32 rounded-full border-4 border-blue-200 dark:border-white/20 shadow-2xl"
             />
           </motion.div>
 
@@ -55,7 +52,7 @@ export default function Hero() {
           >
             <h1 className="text-5xl md:text-7xl font-bold mb-4">
               <span className="inline-flex items-center gap-3">
-                <Sparkles className="w-12 h-12 text-yellow-400 animate-pulse" />
+                <Sparkles className="w-12 h-12 text-yellow-500 dark:text-yellow-400 animate-pulse" />
                 <GradientText>{t('hero.greeting')}</GradientText>
               </span>
             </h1>
@@ -65,7 +62,7 @@ export default function Hero() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.3 }}
-            className="text-xl md:text-2xl text-gray-300 mb-6"
+            className="text-xl md:text-2xl text-gray-700 dark:text-gray-300 mb-6"
           >
             {t('hero.subtitle')}
           </motion.p>
@@ -74,7 +71,7 @@ export default function Hero() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.4 }}
-            className="flex items-center justify-center gap-2 text-gray-400 mb-12"
+            className="flex items-center justify-center gap-2 text-gray-600 dark:text-gray-400 mb-12"
           >
             <MapPin className="w-5 h-5" />
             <span>{t('hero.university')}</span>
@@ -89,17 +86,17 @@ export default function Hero() {
         >
           <GlassCard className="max-w-3xl mx-auto">
             <div className="space-y-6">
-              <p className="text-2xl font-bold text-white">
+              <p className="text-2xl font-bold text-gray-900 dark:text-white">
                 {t('hero.description')}
               </p>
-              <p className="text-gray-300 leading-relaxed">
+              <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
                 {t('hero.intro')}
               </p>
-              <div className="pt-6 border-t border-white/10">
-                <p className="text-lg italic text-blue-300 mb-3">
+              <div className="pt-6 border-t border-gray-200 dark:border-white/10">
+                <p className="text-lg italic text-blue-600 dark:text-blue-300 mb-3">
                   "{t('hero.quote')}"
                 </p>
-                <p className="text-sm text-gray-400">
+                <p className="text-sm text-gray-600 dark:text-gray-400">
                   {t('hero.quoteDesc')}
                 </p>
               </div>

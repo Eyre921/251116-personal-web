@@ -17,9 +17,10 @@ export default function GlassCard({ children, className, blur = 'md' }: GlassCar
       transition={{ duration: 0.5 }}
       whileHover={{ scale: 1.02 }}
       className={cn(
-        'rounded-2xl border border-white/10 bg-white/5 backdrop-blur p-6',
+        'rounded-2xl p-6',
+        'border border-gray-200 bg-white/90 backdrop-blur shadow-lg',
+        'dark:border-white/10 dark:bg-white/5 dark:shadow-[0_8px_32px_0_rgba(0,0,0,0.37)]',
         `backdrop-blur-${blur}`,
-        'shadow-[0_8px_32px_0_rgba(0,0,0,0.37)]',
         className
       )}
     >

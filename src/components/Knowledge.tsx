@@ -19,7 +19,7 @@ export default function Knowledge() {
   ]
 
   return (
-    <section id="knowledge" className="relative py-20 px-4 bg-gray-900">
+    <section id="knowledge" className="relative py-20 px-4 bg-white dark:bg-gray-900">
       <div className="max-w-7xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -30,8 +30,8 @@ export default function Knowledge() {
           <h2 className="text-4xl md:text-6xl font-bold mb-6">
             ⛳️ <GradientText colors={['#4ade80', '#3b82f6', '#a855f7']}>{t('knowledge.title')}</GradientText>
           </h2>
-          <p className="text-lg text-gray-400 max-w-3xl mx-auto mb-4">{t('knowledge.subtitle')}</p>
-          <p className="text-gray-500">{t('knowledge.note')}</p>
+          <p className="text-lg text-gray-600 dark:text-gray-400 max-w-3xl mx-auto mb-4">{t('knowledge.subtitle')}</p>
+          <p className="text-gray-500 dark:text-gray-500">{t('knowledge.note')}</p>
         </motion.div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -48,13 +48,13 @@ export default function Knowledge() {
               whileHover={{ y: -5 }}
             >
               <GlassCard className="h-full group cursor-pointer">
-                <div className={`p-4 rounded-xl bg-gradient-to-br ${area.color} mb-4 inline-block`}>
+                <div className={`p-4 rounded-xl bg-gradient-to-br ${area.color} text-white mb-4 inline-block`}>
                   {area.icon}
                 </div>
-                <h3 className="text-xl font-bold text-white mb-3 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:${area.color} transition-all">
+                <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r transition-all">
                   {area.title}
                 </h3>
-                <p className="text-sm text-gray-400">{area.description}</p>
+                <p className="text-sm text-gray-600 dark:text-gray-400">{area.description}</p>
               </GlassCard>
             </motion.a>
           ))}
@@ -67,7 +67,7 @@ export default function Knowledge() {
           className="mt-12"
         >
           <GlassCard className="text-center">
-            <p className="text-gray-300">{t('knowledge.tip')}</p>
+            <p className="text-gray-700 dark:text-gray-300">{t('knowledge.tip')}</p>
           </GlassCard>
         </motion.div>
       </div>

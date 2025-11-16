@@ -20,7 +20,7 @@ export default function Navbar() {
   return (
     <HeroNavbar 
       isBordered 
-      className="bg-gray-900/70 dark:bg-gray-900/70 backdrop-blur-xl border-b border-white/10"
+      className="bg-white/90 dark:bg-gray-900/90 backdrop-blur-xl border-b border-gray-200 dark:border-white/10"
       classNames={{
         wrapper: "max-w-7xl"
       }}
@@ -30,18 +30,18 @@ export default function Navbar() {
           whileHover={{ scale: 1.1, rotate: 5 }}
           className="relative"
         >
-          <div className="absolute inset-0 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full blur-lg opacity-30" />
+          <div className="absolute inset-0 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full blur-lg opacity-20 dark:opacity-30" />
           <img
             src="https://eyre-halo.oss-cn-hangzhou.aliyuncs.com/logo2025-wk6w.png"
             alt="Eyre Logo"
-            className="relative w-10 h-10 rounded-full border-2 border-white/20"
+            className="relative w-10 h-10 rounded-full border-2 border-blue-200 dark:border-white/20"
           />
         </motion.div>
         <motion.p 
-          className="font-bold text-white ml-3 text-lg"
+          className="font-bold text-gray-900 dark:text-white ml-3 text-lg"
           whileHover={{ scale: 1.05 }}
         >
-          <span className="bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent">
+          <span className="bg-gradient-to-r from-blue-600 to-purple-600 dark:from-blue-400 dark:to-purple-500 bg-clip-text text-transparent">
             Eyre
           </span>
         </motion.p>
@@ -60,7 +60,7 @@ export default function Navbar() {
               <Button
                 variant="light"
                 onPress={() => scrollToSection(item.id)}
-                className="text-gray-300 hover:text-white hover:bg-white/10 transition-all"
+                className="text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-white/10 transition-all"
               >
                 {item.label}
               </Button>
@@ -73,7 +73,7 @@ export default function Navbar() {
         <NavbarItem>
           <Dropdown
             classNames={{
-              content: "bg-gray-800/90 backdrop-blur-xl border border-white/10"
+              content: "bg-white/95 dark:bg-gray-800/95 backdrop-blur-xl border border-gray-200 dark:border-white/10"
             }}
           >
             <DropdownTrigger>
@@ -81,7 +81,7 @@ export default function Navbar() {
                 <Button
                   variant="light"
                   isIconOnly
-                  className="text-gray-300 hover:text-white hover:bg-white/10"
+                  className="text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-white/10"
                 >
                   <Languages className="w-5 h-5" />
                 </Button>
@@ -91,18 +91,18 @@ export default function Navbar() {
               aria-label="Language selection"
               onAction={(key) => changeLanguage(key as string)}
               classNames={{
-                base: "text-white"
+                base: "text-gray-900 dark:text-white"
               }}
             >
               <DropdownItem 
                 key="zh"
-                className="hover:bg-white/10"
+                className="hover:bg-gray-100 dark:hover:bg-white/10"
               >
                 🇨🇳 中文
               </DropdownItem>
               <DropdownItem 
                 key="en"
-                className="hover:bg-white/10"
+                className="hover:bg-gray-100 dark:hover:bg-white/10"
               >
                 🇬🇧 English
               </DropdownItem>
@@ -115,7 +115,7 @@ export default function Navbar() {
               isIconOnly
               variant="light"
               onPress={toggleTheme}
-              className="text-gray-300 hover:text-white hover:bg-white/10"
+              className="text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-white/10"
             >
               {theme === 'light' ? (
                 <Moon className="w-5 h-5" />
