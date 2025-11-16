@@ -1,0 +1,33 @@
+/* Magic Bento 自定义样式 - 优化排版 */
+
+.magic-bento-container {
+  /* 确保卡片有足够的内边距和间距 */
+}
+
+.magic-bento-container .bento-card {
+  /* 增加卡片最小高度 */
+  min-height: 200px !important;
+}
+
+.magic-bento-container .bento-card-title {
+  /* 放大标题字体 */
+  font-size: 1.25rem !important;
+  line-height: 1.75rem !important;
+  font-weight: 600 !important;
+  margin-bottom: 1rem !important;
+}
+
+.magic-bento-container .bento-card-description {
+  /* 优化描述文字 */
+  font-size: 1rem !important;
+  line-height: 1.75rem !important;
+  white-space: pre-line !important;
+  letter-spacing: 0.025em !important;
+}
+
+.magic-bento-container .bento-card-label {
+  /* 优化标签样式 */
+  font-size: 0.875rem !important;
+  font-weight: 500 !important;
+  padding: 0.375rem 0.75rem !important;
+}

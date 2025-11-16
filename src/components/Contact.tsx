@@ -60,6 +60,12 @@ export default function Contact() {
     t('contact.workTip4')
   ]
 
+  const lifeTips = [
+    t('contact.life1'),
+    t('contact.life2'),
+    t('contact.life3')
+  ]
+
   return (
     <section id="contact" className="relative py-20 px-4 overflow-hidden">
       {/* Hyperspeed Background */}
@@ -225,33 +231,38 @@ export default function Contact() {
                 🤞 {t('contact.lifeCommunication')}
               </motion.h3>
               
-              {/* Split text into parts for animated presentation */}
-              <div className="space-y-4">
-                {t('contact.lifeTip').split('，').map((part, index) => (
+              {/* Life communication tips - 3 independent points */}
+              <div className="space-y-3">
+                {lifeTips.map((tip, index) => (
                   <motion.div
                     key={index}
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
+                    initial={{ opacity: 0, x: 30, scale: 0.8 }}
+                    whileInView={{ opacity: 1, x: 0, scale: 1 }}
                     viewport={{ once: true }}
-                    transition={{ delay: index * 0.1 }}
-                    whileHover={{ 
-                      x: 5,
-                      transition: { type: "spring", stiffness: 300 }
+                    transition={{ 
+                      delay: index * 0.1,
+                      type: "spring",
+                      stiffness: 200,
+                      damping: 20
                     }}
-                    className="flex items-center gap-3 p-3 rounded-xl hover:bg-purple-50/50 dark:hover:bg-purple-900/10 transition-colors cursor-default group"
+                    whileHover={{ 
+                      x: -10, 
+                      scale: 1.02,
+                      transition: { type: "spring", stiffness: 400, damping: 10 }
+                    }}
+                    className="flex items-start gap-3 p-3 rounded-xl hover:bg-purple-50/50 dark:hover:bg-purple-900/10 transition-colors cursor-default group"
                   >
                     <motion.span
                       whileHover={{ 
                         scale: 1.3,
-                        rotate: [0, 10, -10, 0],
-                        transition: { duration: 0.3 }
+                        rotate: 360,
+                        transition: { duration: 0.5 }
                       }}
-                      className="text-2xl group-hover:scale-110 transition-transform"
-                    >
-                      {index === 0 ? '💬' : index === 1 ? '🎮' : index === 2 ? '📖' : '✨'}
-                    </motion.span>
-                    <span className="text-gray-700 dark:text-gray-300 leading-relaxed flex-1">
-                      {part.trim()}{index < t('contact.lifeTip').split('，').length - 1 ? '，' : ''}
+                      className="flex-shrink-0 w-2 h-2 rounded-full bg-gradient-to-br from-purple-500 to-pink-500 mt-2 group-hover:shadow-lg group-hover:shadow-purple-500/50"
+
+                    />
+                    <span className="text-sm text-gray-700 dark:text-gray-300 flex-1 leading-relaxed">
+                      {tip}
                     </span>
                   </motion.div>
                 ))}

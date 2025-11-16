@@ -7,6 +7,8 @@
     "contact": "Contact"
   },
   "hero": {
+    "name": "Fu Hangkang (Eyre)",
+    "role": "CEO of Myself",
     "greeting": "Hi! I'm Fu Hangkang (Eyre)",
     "subtitle": "A young person passionate about AI technology",
     "university": "Hunan University 2024 - Computer Science and Technology (AI Class)",
@@ -97,10 +99,12 @@
     "website": "Personal Website",
     "workCommunication": "Work Communication",
     "lifeCommunication": "Life Communication",
+    "life1": "I expect our communication to be casual, relaxed, natural, and authentic.",
+    "life2": "You can freely share any ordinary daily life, shining moments, emotional bits, or unique insights.",
+    "life3": "I will be a patient listener and lend a helping hand when you need it.",
     "workTip1": "Direct and clear: Phone/online meeting/face-to-face > text message; text messages should state the purpose directly, no need for 'Are you there?' preamble.",
     "workTip2": "Document first: Key points and documents are the most efficient communication tools; they don't need to be neat and formal, just convey the information you think is necessary.",
     "workTip3": "Clarify doubts: Please allow me to ask questions about things I don't understand at any time; you can also ask me questions at any time to ensure our thinking is clear.",
-    "workTip4": "Honest feedback: If you find any mistakes or improprieties on my part, please point them out; if you can provide improvement suggestions, I would be very grateful.",
-    "lifeTip": "I expect our communication to be casual, relaxed, natural, and authentic. You can freely share any ordinary daily life, shining moments, emotional bits, or unique insights. I will be a patient listener and lend a helping hand when you need it."
+    "workTip4": "Honest feedback: If you find any mistakes or improprieties on my part, please point them out; if you can provide improvement suggestions, I would be very grateful."
   }
 }
