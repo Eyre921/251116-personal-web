@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next'
 import GlassCard from './ui/GlassCard'
 import SpotlightCard from './ui/SpotlightCard'
 import GradientText from './ui/GradientText'
-// @ts-ignore
+// @ts-expect-error - Hyperspeed is a JSX component without TypeScript definitions
 import Hyperspeed from './Hyperspeed'
 
 export default function Contact() {
@@ -85,41 +85,72 @@ export default function Contact() {
           </p>
         </motion.div>
 
-        {/* Contact Cards */}
+        {/* Contact Cards with Bounce Effect */}
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12" style={{ pointerEvents: 'auto' }}>
           {contacts.map((contact, index) => (
             <motion.div
               key={index}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
+              initial={{ opacity: 0, y: 50, scale: 0.8 }}
+              whileInView={{ opacity: 1, y: 0, scale: 1 }}
               viewport={{ once: true }}
-              transition={{ delay: index * 0.1 }}
+              transition={{ 
+                delay: index * 0.08,
+                type: "spring",
+                stiffness: 260,
+                damping: 20 
+              }}
+              whileHover={{ 
+                y: -10, 
+                scale: 1.05,
+                transition: { 
+                  type: "spring",
+                  stiffness: 400,
+                  damping: 10 
+                }
+              }}
               style={{ pointerEvents: 'auto' }}
             >
-              <GlassCard className="h-full group cursor-pointer [pointer-events:auto]">
-                <div className="flex flex-col items-center text-center">
-                  <motion.div
-                    whileHover={{ scale: 1.1, rotate: 5 }}
-                    className={`p-5 rounded-2xl bg-gradient-to-br ${contact.color} text-white mb-4`}
-                  >
-                    {contact.icon}
-                  </motion.div>
-                  <p className="font-bold text-xl text-gray-900 dark:text-white mb-2">{contact.label}</p>
-                  {contact.link ? (
-                    <motion.a
-                      href={contact.link}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      whileHover={{ scale: 1.05 }}
-                      className="text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 transition-colors"
+              <div className="relative h-full group cursor-pointer">
+                {/* Glow effect on hover */}
+                <div className={`absolute inset-0 bg-gradient-to-br ${contact.color} opacity-0 group-hover:opacity-20 blur-xl transition-opacity duration-300 rounded-2xl`} />
+                
+                <GlassCard className="h-full relative overflow-hidden [pointer-events:auto]">
+                  {/* Shine effect */}
+                  <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000" />
+                  
+                  <div className="flex flex-col items-center text-center relative z-10">
+                    <motion.div
+                      whileHover={{ 
+                        scale: 1.15, 
+                        rotate: [0, -10, 10, -5, 5, 0],
+                        transition: { duration: 0.5 }
+                      }}
+                      className={`p-5 rounded-2xl bg-gradient-to-br ${contact.color} text-white mb-4 shadow-lg group-hover:shadow-2xl transition-shadow`}
                     >
-                      {contact.value}
-                    </motion.a>
-                  ) : (
-                    <p className="text-gray-600 dark:text-gray-400">{contact.value}</p>
-                  )}
-                </div>
-              </GlassCard>
+                      {contact.icon}
+                    </motion.div>
+                    
+                    <p className="font-bold text-xl text-gray-900 dark:text-white mb-2 group-hover:scale-105 transition-transform">
+                      {contact.label}
+                    </p>
+                    
+                    {contact.link ? (
+                      <motion.a
+                        href={contact.link}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        whileHover={{ scale: 1.1 }}
+                        whileTap={{ scale: 0.95 }}
+                        className={`text-transparent bg-clip-text bg-gradient-to-r ${contact.color} font-medium hover:opacity-80 transition-opacity`}
+                      >
+                        {contact.value}
+                      </motion.a>
+                    ) : (
+                      <p className="text-gray-600 dark:text-gray-400 font-medium">{contact.value}</p>
+                    )}
+                  </div>
+                </GlassCard>
+              </div>
             </motion.div>
           ))}
         </div>
@@ -132,21 +163,47 @@ export default function Contact() {
             viewport={{ once: true }}
           >
             <SpotlightCard className="p-8 h-full [pointer-events:auto]" spotlightColor="rgba(59, 130, 246, 0.15)">
-              <h3 className="text-2xl font-bold text-blue-600 dark:text-blue-400 mb-6">💼 {t('contact.workCommunication')}</h3>
-              <div className="space-y-4">
+              <motion.h3 
+                initial={{ opacity: 0, x: -20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                className="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-cyan-500 dark:from-blue-400 dark:to-cyan-400 mb-6"
+              >
+                💼 {t('contact.workCommunication')}
+              </motion.h3>
+              <div className="space-y-3">
                 {workTips.map((tip, index) => (
                   <motion.div
                     key={index}
-                    initial={{ opacity: 0, x: -20 }}
-                    whileInView={{ opacity: 1, x: 0 }}
+                    initial={{ opacity: 0, x: -30, scale: 0.8 }}
+                    whileInView={{ opacity: 1, x: 0, scale: 1 }}
                     viewport={{ once: true }}
-                    transition={{ delay: index * 0.1 }}
-                    className="flex items-start gap-3"
+                    transition={{ 
+                      delay: index * 0.1,
+                      type: "spring",
+                      stiffness: 200,
+                      damping: 20
+                    }}
+                    whileHover={{ 
+                      x: 10, 
+                      scale: 1.02,
+                      transition: { type: "spring", stiffness: 400, damping: 10 }
+                    }}
+                    className="flex items-start gap-4 p-3 rounded-xl hover:bg-blue-50/50 dark:hover:bg-blue-900/10 transition-colors cursor-default group"
                   >
-                    <span className="flex-shrink-0 w-6 h-6 rounded-full bg-blue-500/20 text-blue-600 dark:text-blue-400 flex items-center justify-center text-sm font-bold">
+                    <motion.span 
+                      whileHover={{ 
+                        scale: 1.2, 
+                        rotate: 360,
+                        transition: { duration: 0.5 }
+                      }}
+                      className="flex-shrink-0 w-8 h-8 rounded-full bg-gradient-to-br from-blue-500 to-cyan-500 text-white flex items-center justify-center text-sm font-bold shadow-lg group-hover:shadow-blue-500/50"
+                    >
                       {index + 1}
+                    </motion.span>
+                    <span className="text-sm text-gray-700 dark:text-gray-300 flex-1 leading-relaxed">
+                      {tip}
                     </span>
-                    <span className="text-sm text-gray-700 dark:text-gray-300 flex-1">{tip}</span>
                   </motion.div>
                 ))}
               </div>
@@ -159,10 +216,46 @@ export default function Contact() {
             viewport={{ once: true }}
           >
             <SpotlightCard className="p-8 h-full [pointer-events:auto]" spotlightColor="rgba(168, 85, 247, 0.15)">
-              <h3 className="text-2xl font-bold text-purple-600 dark:text-purple-400 mb-6">🤞 {t('contact.lifeCommunication')}</h3>
-              <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
-                {t('contact.lifeTip')}
-              </p>
+              <motion.h3 
+                initial={{ opacity: 0, x: 20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                className="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-pink-500 dark:from-purple-400 dark:to-pink-400 mb-6"
+              >
+                🤞 {t('contact.lifeCommunication')}
+              </motion.h3>
+              
+              {/* Split text into parts for animated presentation */}
+              <div className="space-y-4">
+                {t('contact.lifeTip').split('，').map((part, index) => (
+                  <motion.div
+                    key={index}
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: index * 0.1 }}
+                    whileHover={{ 
+                      x: 5,
+                      transition: { type: "spring", stiffness: 300 }
+                    }}
+                    className="flex items-center gap-3 p-3 rounded-xl hover:bg-purple-50/50 dark:hover:bg-purple-900/10 transition-colors cursor-default group"
+                  >
+                    <motion.span
+                      whileHover={{ 
+                        scale: 1.3,
+                        rotate: [0, 10, -10, 0],
+                        transition: { duration: 0.3 }
+                      }}
+                      className="text-2xl group-hover:scale-110 transition-transform"
+                    >
+                      {index === 0 ? '💬' : index === 1 ? '🎮' : index === 2 ? '📖' : '✨'}
+                    </motion.span>
+                    <span className="text-gray-700 dark:text-gray-300 leading-relaxed flex-1">
+                      {part.trim()}{index < t('contact.lifeTip').split('，').length - 1 ? '，' : ''}
+                    </span>
+                  </motion.div>
+                ))}
+              </div>
             </SpotlightCard>
           </motion.div>
         </div>

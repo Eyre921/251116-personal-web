@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next'
 import SpotlightCard from './ui/SpotlightCard'
 import GradientText from './ui/GradientText'
 import { useTheme } from '../contexts/ThemeContext'
-// @ts-ignore
+// @ts-expect-error - FloatingLines is a JSX component without TypeScript definitions
 import FloatingLines from './FloatingLines'
 
 export default function About() {
@@ -27,21 +27,22 @@ export default function About() {
     : ['#3b82f6', '#6366f1', '#8b5cf6', '#a855f7', '#d946ef'] // 蓝紫色渐变
 
   return (
-    <section id="about" className="relative py-20 px-4 overflow-hidden">
+    <section id="about" className="relative py-20 px-4 overflow-hidden bg-white dark:bg-gray-950">
       {/* Floating Lines Background */}
       <div className="absolute inset-0 z-0">
         <FloatingLines 
           linesGradient={linesGradient}
-          lineCount={5}
-          lineDistance={5}
+          lineCount={6}
+          lineDistance={4}
           interactive={true}
           parallax={true}
           animationSpeed={1}
+          mixBlendMode="screen"
         />
       </div>
       
-      {/* Gradient Overlay - pointer-events-none to allow mouse interaction with background */}
-      <div className="absolute inset-0 z-[1] bg-gradient-to-b from-white/40 via-gray-50/40 to-white/40 dark:from-gray-900/40 dark:via-gray-950/40 dark:to-gray-900/40 pointer-events-none" />
+      {/* Light Gradient Overlay - pointer-events-none to allow mouse interaction with background */}
+      <div className="absolute inset-0 z-[1] bg-gradient-to-b from-transparent via-white/10 to-transparent dark:from-transparent dark:via-gray-900/20 dark:to-transparent pointer-events-none" />
       
       <div className="relative max-w-7xl mx-auto z-10">
         <motion.h2

@@ -3,11 +3,13 @@ import { Brain, Briefcase, Heart, Globe, Sparkles, Code, TrendingUp, GraduationC
 import { useTranslation } from 'react-i18next'
 import GlassCard from './ui/GlassCard'
 import GradientText from './ui/GradientText'
-// @ts-ignore
+import { useTheme } from '../contexts/ThemeContext'
+// @ts-expect-error - Particles is a JSX component without TypeScript definitions
 import Particles from './Particles'
 
 export default function Knowledge() {
   const { t } = useTranslation()
+  const { theme } = useTheme()
   
   const knowledgeAreas = [
     { icon: <Brain className="w-8 h-8" />, title: t('knowledge.ai'), description: t('knowledge.aiDesc'), color: 'from-blue-500 to-cyan-500', link: "https://l6ncjsjwvj.feishu.cn/wiki/JVZ0wnP56ikEMKkXPqAc4m1Inze" },
@@ -20,15 +22,27 @@ export default function Knowledge() {
     { icon: <GraduationCap className="w-8 h-8" />, title: t('knowledge.student'), description: t('knowledge.studentDesc'), color: 'from-rose-500 to-pink-500', link: "https://l6ncjsjwvj.feishu.cn/wiki/TSk3wriGiiBkAakVVCSccRJ0ndc" }
   ]
 
+  // Particles 粒子颜色配置：浅色模式使用深色粒子，暗色模式使用亮色粒子
+  const particleColors = theme === 'light'
+    ? ['#3b82f6', '#6366f1', '#8b5cf6', '#a855f7'] // 深蓝紫色粒子
+    : ['#60a5fa', '#818cf8', '#a78bfa', '#c084fc'] // 亮蓝紫色粒子
+
   return (
-    <section id="knowledge" className="relative py-20 px-4 overflow-hidden">
+    <section id="knowledge" className="relative py-20 px-4 overflow-hidden bg-gray-50 dark:bg-gray-900">
       {/* Particles Background */}
       <div className="absolute inset-0 z-0">
-        <Particles />
+        <Particles 
+          particleColors={particleColors}
+          particleCount={150}
+          particleSpread={10}
+          speed={0.15}
+          moveParticlesOnHover={true}
+          particleHoverFactor={1.5}
+        />
       </div>
       
-      {/* Gradient Overlay - pointer-events-none to allow mouse interaction with background */}
-      <div className="absolute inset-0 z-[1] bg-white/30 dark:bg-gray-900/30 pointer-events-none" />
+      {/* Light Gradient Overlay - pointer-events-none to allow mouse interaction with background */}
+      <div className="absolute inset-0 z-[1] bg-gradient-to-b from-transparent via-gray-50/20 to-transparent dark:from-transparent dark:via-gray-900/20 dark:to-transparent pointer-events-none" />
       
       <div className="relative max-w-7xl mx-auto z-10">
         <motion.div
@@ -61,7 +75,7 @@ export default function Knowledge() {
                 <div className={`p-4 rounded-xl bg-gradient-to-br ${area.color} text-white mb-4 inline-block`}>
                   {area.icon}
                 </div>
-                <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r transition-all">
+                <h3 className={`text-xl font-bold text-gray-900 dark:text-white mb-3 transition-all duration-300 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r ${area.color}`}>
                   {area.title}
                 </h3>
                 <p className="text-sm text-gray-600 dark:text-gray-400">{area.description}</p>

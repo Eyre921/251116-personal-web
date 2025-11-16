@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next'
 import SpotlightCard from './ui/SpotlightCard'
 import GlassCard from './ui/GlassCard'
 import GradientText from './ui/GradientText'
-// @ts-ignore
+// @ts-expect-error - GridScan is a JSX component without TypeScript definitions
 import { GridScan } from './GridScan'
 
 export default function Skills() {

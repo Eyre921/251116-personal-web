@@ -3,7 +3,7 @@ import { Github, Mail, MapPin, Sparkles } from 'lucide-react'
 import { useTranslation } from 'react-i18next'
 import GradientText from './ui/GradientText'
 import GlassCard from './ui/GlassCard'
-// @ts-ignore
+// @ts-expect-error - LiquidEther is a JSX component without TypeScript definitions
 import LiquidEther from './LiquidEther'
 
 export default function Hero() {
