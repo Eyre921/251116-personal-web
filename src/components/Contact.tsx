@@ -330,12 +330,12 @@ export default function Contact() {
           <GlassCard className="inline-block pointer-events-auto">
             <motion.img
               whileHover={{ scale: 1.05 }}
-              src="https://eyre-halo.oss-cn-hangzhou.aliyuncs.com/image-rp2a.png"
+              src="/imgs/wechat-image-rp2a.png"
               alt="WeChat QR Code"
               className="w-56 h-56 rounded-lg"
             />
             <p className="mt-4 text-gray-600 dark:text-gray-400 font-medium">
-              {t('contact.wechat')} QR Code
+              {t('contact.wechatQr')}
             </p>
           </GlassCard>
         </motion.div>

@@ -93,6 +93,7 @@
     "title": "Contact",
     "subtitle": "Hâte d'échanger et de faire des choses intéressantes ensemble",
     "wechat": "WeChat",
+    "wechatQr": "Code QR WeChat",
     "qq": "QQ",
     "email": "E-mail",
     "github": "GitHub",
@@ -108,5 +109,8 @@
     "workTip3": "Clarifier les doutes : permets-moi de poser des questions ; tu peux aussi le faire pour garder la clarté.",
     "workTip4": "Feedback honnête : si tu trouves des erreurs ou des impropriétés, indique-les ; les suggestions d'amélioration sont appréciées.",
     "lifeTip": "Je souhaite une communication décontractée, naturelle et authentique. Tu peux partager librement ta vie, des moments forts, des émotions ou des idées uniques. Je serai un auditeur patient et aiderai quand tu en auras besoin."
+  },
+  "common": {
+    "loadingEntering": "Entrée sur la page personnelle d’Eyre…"
   }
 }

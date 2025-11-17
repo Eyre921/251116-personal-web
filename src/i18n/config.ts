@@ -34,7 +34,7 @@ i18n
         translation: ar
       }
     },
-    lng: 'zh',
+    lng: (typeof localStorage !== 'undefined' && localStorage.getItem('i18nextLng')) || 'zh',
     fallbackLng: 'zh',
     interpolation: {
       escapeValue: false

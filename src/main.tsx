@@ -15,3 +15,6 @@ createRoot(document.getElementById('root')!).render(
     </HeroUIProvider>
   </StrictMode>,
 )
+
+const el = document.getElementById('app-loading')
+if (el) el.style.display = 'none'

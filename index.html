@@ -19,9 +19,101 @@
     <meta name="twitter:title" content="符航康的个人主页" />
     <meta name="twitter:description" content="一名关注且热爱 AI 技术的年轻人，战略驱动、系统化思考、高度务实的机会主义者。" />
     <meta name="twitter:image" content="/imgs/profile/profile.png" />
+    <script>
+      (function(){
+        try {
+          var saved = localStorage.getItem('i18nextLng');
+          var raw = navigator.language || navigator.userLanguage || 'zh';
+          raw = String(raw).toLowerCase();
+          function map(l){
+            if (l.startsWith('zh')) {
+              if (l.includes('tw') || l.includes('hk') || l.includes('mo')) return 'zh-TW';
+              return 'zh';
+            }
+            if (l.startsWith('en')) return 'en';
+            if (l.startsWith('es')) return 'es';
+            if (l.startsWith('fr')) return 'fr';
+            if (l.startsWith('ru')) return 'ru';
+            if (l.startsWith('ar')) return 'ar';
+            return 'zh';
+          }
+          var chosen = saved || map(raw);
+          localStorage.setItem('i18nextLng', chosen);
+          document.documentElement.lang = chosen;
+        } catch(e) {}
+      })();
+    </script>
+    <script>
+      (function(){
+        try {
+          var saved = localStorage.getItem('theme');
+          var root = document.documentElement;
+          if (saved === 'dark') { root.classList.add('dark'); } else { root.classList.remove('dark'); }
+        } catch(e) {}
+      })();
+    </script>
+    <style>
+      #app-loading {
+        position: fixed;
+        inset: 0;
+        background: #ffffff;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        z-index: 9999;
+      }
+      #app-loading .loader {
+        width: 56px;
+        height: 56px;
+        border-radius: 50%;
+        background: conic-gradient(
+          #f87171,
+          #fb923c,
+          #fbbf24,
+          #34d399,
+          #60a5fa,
+          #a78bfa,
+          #f472b6,
+          #f87171
+        );
+        -webkit-mask: radial-gradient(farthest-side, #0000 85%, #000 86%);
+        mask: radial-gradient(farthest-side, #0000 85%, #000 86%);
+        animation: app-spin 0.9s linear infinite;
+      }
+      #app-loading .label {
+        margin-top: 12px;
+        color: #333333;
+        font-weight: 600;
+        letter-spacing: 0.04em;
+      }
+      @keyframes app-spin { from { transform: rotate(0deg) } to { transform: rotate(360deg) } }
+      .dark #app-loading { background: #0e152e }
+      .dark #app-loading .label { color: #ffffff }
+    </style>
   </head>
   <body>
+    <div id="app-loading">
+      <div class="loader"></div>
+      <div class="label" id="app-loading-label"></div>
+    </div>
     <div id="root"></div>
+    <script>
+      (function(){
+        var lang = localStorage.getItem('i18nextLng') || 'zh';
+        var dict = {
+          'zh': '正在进入 Eyre 的个人主页…',
+          'zh-TW': '正在進入 Eyre 的個人主頁…',
+          'en': "Entering Eyre's personal homepage…",
+          'es': 'Entrando al sitio personal de Eyre…',
+          'fr': 'Entrée sur la page personnelle d’Eyre…',
+          'ru': 'Вход на персональную страницу Eyre…',
+          'ar': 'جارٍ الدخول إلى الصفحة الشخصية لـ Eyre…'
+        };
+        var el = document.getElementById('app-loading-label');
+        if (el) el.textContent = dict[lang] || dict['zh'];
+      })();
+    </script>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>

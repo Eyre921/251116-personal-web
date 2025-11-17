@@ -30,7 +30,7 @@ export default function Navbar() {
         >
           <div className="absolute inset-0 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full blur-lg opacity-20 dark:opacity-30" />
           <img
-            src="https://eyre-halo.oss-cn-hangzhou.aliyuncs.com/logo2025-wk6w.png"
+            src="/imgs/logo2025-wk6w.png"
             alt="Eyre Logo"
             className="relative w-10 h-10 rounded-full border-2 border-blue-200 dark:border-white/20"
           />
