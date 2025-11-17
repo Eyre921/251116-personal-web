@@ -90,11 +90,15 @@ export default function About() {
                   whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: index * 0.1 }}
-                  className="flex items-start gap-3"
+                  whileHover={{ x: 10, scale: 1.02, transition: { type: 'spring', stiffness: 400, damping: 10 } }}
+                  className="flex items-start gap-4 p-3 rounded-xl hover:bg-green-50/50 dark:hover:bg-green-900/10 transition-colors cursor-default group pointer-events-auto"
                 >
-                  <span className="flex-shrink-0 w-6 h-6 rounded-full bg-green-500/20 text-green-600 dark:text-green-400 flex items-center justify-center text-sm font-bold">
+                  <motion.span
+                    whileHover={{ scale: 1.2, rotate: 360, transition: { duration: 0.5 } }}
+                    className="flex-shrink-0 w-6 h-6 rounded-full bg-green-500/20 text-green-600 dark:text-green-400 flex items-center justify-center text-sm font-bold group-hover:shadow-lg group-hover:shadow-green-500/50"
+                  >
                     {index + 1}
-                  </span>
+                  </motion.span>
                   <span className="text-gray-700 dark:text-gray-300">{item}</span>
                 </motion.div>
               ))}
@@ -111,11 +115,15 @@ export default function About() {
                   whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: index * 0.1 }}
-                  className="flex items-start gap-3"
+                  whileHover={{ x: -10, scale: 1.02, transition: { type: 'spring', stiffness: 400, damping: 10 } }}
+                  className="flex items-start gap-3 p-3 rounded-xl hover:bg-orange-50/50 dark:hover:bg-orange-900/10 transition-colors cursor-default group pointer-events-auto"
                 >
-                  <span className="flex-shrink-0 w-6 h-6 rounded-full bg-orange-500/20 text-orange-600 dark:text-orange-400 flex items-center justify-center text-sm font-bold">
+                  <motion.span
+                    whileHover={{ scale: 1.3, rotate: 360, transition: { duration: 0.5 } }}
+                    className="flex-shrink-0 w-6 h-6 rounded-full bg-orange-500/20 text-orange-600 dark:text-orange-400 flex items-center justify-center text-sm font-bold group-hover:shadow-lg group-hover:shadow-orange-500/50"
+                  >
                     {index + 1}
-                  </span>
+                  </motion.span>
                   <span className="text-gray-700 dark:text-gray-300">{item}</span>
                 </motion.div>
               ))}

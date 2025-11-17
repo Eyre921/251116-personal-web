@@ -125,7 +125,7 @@ export default function Contact() {
           : 'bg-gradient-to-b from-gray-950/60 via-gray-900/60 to-gray-950/60'
       }`} />
       
-      <div className="relative max-w-7xl mx-auto z-10 pointer-events-none">
+      <div className="relative max-w-7xl mx-auto z-10 pointer-events-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -244,7 +244,7 @@ export default function Contact() {
                       scale: 1.02,
                       transition: { type: "spring", stiffness: 400, damping: 10 }
                     }}
-                    className="flex items-start gap-4 p-3 rounded-xl hover:bg-blue-50/50 dark:hover:bg-blue-900/10 transition-colors cursor-default group"
+                    className="flex items-start gap-4 p-3 rounded-xl hover:bg-blue-50/50 dark:hover:bg-blue-900/10 transition-colors cursor-default group pointer-events-auto"
                   >
                     <motion.span 
                       whileHover={{ 
@@ -299,7 +299,7 @@ export default function Contact() {
                       scale: 1.02,
                       transition: { type: "spring", stiffness: 400, damping: 10 }
                     }}
-                    className="flex items-start gap-3 p-3 rounded-xl hover:bg-purple-50/50 dark:hover:bg-purple-900/10 transition-colors cursor-default group"
+                    className="flex items-start gap-3 p-3 rounded-xl hover:bg-purple-50/50 dark:hover:bg-purple-900/10 transition-colors cursor-default group pointer-events-auto"
                   >
                     <motion.span
                       whileHover={{ 

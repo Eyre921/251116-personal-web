@@ -12,9 +12,10 @@ export function isCoarsePointer(): boolean {
 
 export function isMobileOrTablet(): boolean {
   if (typeof window !== 'undefined') {
-    const byViewport = window.innerWidth <= 1024
     const coarse = isCoarsePointer()
-    return coarse || byViewport
+    const ua = window.navigator?.userAgent || ''
+    const uaMobile = /Android|iPhone|iPad|iPod|Mobile|Windows Phone/i.test(ua)
+    return coarse || uaMobile
   }
   return false
 }
