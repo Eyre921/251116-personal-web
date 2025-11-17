@@ -28,7 +28,7 @@ export default function GradientText({
       `}</style>
       <span
         className={cn(
-          'bg-clip-text text-transparent font-bold',
+          'bg-clip-text text-transparent font-bold inline-block pb-[0.15em]',
           className
         )}
         style={gradientStyle}

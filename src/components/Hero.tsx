@@ -79,8 +79,8 @@ export default function Hero() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.3 }}
               >
-                <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
-                  <span className="inline-flex items-center gap-3 flex-wrap justify-center md:justify-start">
+                <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-[1.3] overflow-visible">
+                  <span className="inline-flex items-baseline gap-3 flex-wrap justify-center md:justify-start">
                     <Sparkles className="w-10 h-10 md:w-12 md:h-12 text-yellow-500 dark:text-yellow-400 animate-pulse" />
                     <GradientText>{t('hero.greeting')}</GradientText>
                   </span>
