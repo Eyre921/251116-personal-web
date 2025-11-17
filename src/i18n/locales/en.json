@@ -107,7 +107,8 @@
     "workTip1": "Direct and clear: Phone/online meeting/face-to-face > text message; text messages should state the purpose directly, no need for 'Are you there?' preamble.",
     "workTip2": "Document first: Key points and documents are the most efficient communication tools; they don't need to be neat and formal, just convey the information you think is necessary.",
     "workTip3": "Clarify doubts: Please allow me to ask questions about things I don't understand at any time; you can also ask me questions at any time to ensure our thinking is clear.",
-    "workTip4": "Honest feedback: If you find any mistakes or improprieties on my part, please point them out; if you can provide improvement suggestions, I would be very grateful."
+    "workTip4": "Honest feedback: If you find any mistakes or improprieties on my part, please point them out; if you can provide improvement suggestions, I would be very grateful.",
+    "hyperspeedHint": "Hint: On desktop, press and hold the empty space on both sides — you might trigger something magical."
   },
   "common": {
     "loadingEntering": "Entering Eyre's personal homepage…"

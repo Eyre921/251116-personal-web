@@ -108,7 +108,8 @@
     "workTip2": "D'abord le document : points clés et documents sont efficaces ; pas besoin d'être parfaits, transmets l'essentiel.",
     "workTip3": "Clarifier les doutes : permets-moi de poser des questions ; tu peux aussi le faire pour garder la clarté.",
     "workTip4": "Feedback honnête : si tu trouves des erreurs ou des impropriétés, indique-les ; les suggestions d'amélioration sont appréciées.",
-    "lifeTip": "Je souhaite une communication décontractée, naturelle et authentique. Tu peux partager librement ta vie, des moments forts, des émotions ou des idées uniques. Je serai un auditeur patient et aiderai quand tu en auras besoin."
+    "lifeTip": "Je souhaite une communication décontractée, naturelle et authentique. Tu peux partager librement ta vie, des moments forts, des émotions ou des idées uniques. Je serai un auditeur patient et aiderai quand tu en auras besoin.",
+    "hyperspeedHint": "Astuce : Sur ordinateur, maintenez enfoncé l’espace vide de chaque côté — quelque chose de magique pourrait se produire."
   },
   "common": {
     "loadingEntering": "Entrée sur la page personnelle d’Eyre…"

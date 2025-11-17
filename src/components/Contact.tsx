@@ -339,6 +339,16 @@ export default function Contact() {
             </p>
           </GlassCard>
         </motion.div>
+        {!isMobile && (
+          <motion.p
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            className="mt-6 text-center text-xs text-gray-500 dark:text-gray-500 pointer-events-none"
+          >
+            {t('contact.hyperspeedHint')}
+          </motion.p>
+        )}
       </div>
     </section>
   )
